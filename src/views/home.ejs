@@ -2,16 +2,161 @@
   <section
     class="content-section d-flex flex-column p-3 justify-content-center"
   >
-    <h1 class="ps-2">A comprehensive platform for reliable</h1>
-    <h2 class="ps-2">job opportunities and internships</h2>
-    <h5 class="ps-2 my-3">Get Discovered. Get Hired</h5>
+    <h1 class="ps-2 main-h">A comprehensive platform for reliable</h1>
+    <h2 class="ps-2 text-white h-white">job opportunities and internships</h2>
+    <h5 class="ps-2 text-white my-3 h-white">Get Discovered. Get Hired</h5>
     <div class="d-flex my-3">
       <button type="button" class="btn btn-lg mx-2 login-btn">
         I'm A Job Seeker
       </button>
-      <button type="button" class="btn btn-lg mx-2 login-btn">
+      <button
+        type="button"
+        class="btn btn-lg mx-2 login-btn"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+      >
         I'm A Recruiter
       </button>
+
+      <!-- register Modal -->
+      <div
+        class="modal fade"
+        id="exampleModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-3" id="exampleModalLabel">
+                Experience easily!
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Name</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="enter your name"
+                  aria-label="Username"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Email</span>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="enter your email"
+                  aria-label="Email"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Password</span>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="enter your password"
+                  aria-label="password"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <button class="btn mx-2 login-btn" type="button">Register</button>
+            </div>
+            <div class="modal-footer">
+              <p>Already registered?</p>
+              <!-- <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button> -->
+              <button
+                type="button"
+                class="btn btn-outline-success"
+                data-bs-toggle="modal"
+                data-bs-target="#login-modal"
+              >
+                Login
+              </button>
+              <div class="ms-auto modal-media-right">
+                <i class="fa-brands fa-twitter me-1 tw"></i>
+                <i class="fa-brands fa-instagram me-1 in"></i>
+                <i class="fa-brands fa-facebook me-1 fb"></i>
+                <i class="fa-brands fa-whatsapp me-1 wa"></i>
+                <i class="fa-brands fa-linkedin me-1 ln"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- login Modal -->
+      <div
+        class="modal fade"
+        id="login-modal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-3" id="exampleModalLabel">
+                Experience easily!
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Email</span>
+                <input
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                  aria-label="Email"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text" id="basic-addon1">Password</span>
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Password"
+                  aria-label="Password"
+                  aria-describedby="basic-addon1"
+                />
+              </div>
+              <button class="btn mx-2 login-btn" type="button">Login</button>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-danger btn-sm"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
   <section class="image-section">

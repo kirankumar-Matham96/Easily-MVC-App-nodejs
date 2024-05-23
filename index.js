@@ -25,6 +25,7 @@ app.use(ejsLayouts);
 app.use(express.static(folderPath));
 
 app.get("/", userController.getHome);
+app.get("/jobs", userController.getJobs);
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
