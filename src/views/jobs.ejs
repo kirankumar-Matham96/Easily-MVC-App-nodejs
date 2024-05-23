@@ -16,7 +16,7 @@
             <%=job.companyName%>
           </h5>
           <p class="text-light">
-            <%=job.jobCategory%>
+            Tech
             <span class="text-info"><%=job.jobDesignation%></span>
           </p>
           <p class="text-light">
@@ -29,7 +29,7 @@
           </p>
           <div class="mb-2 mt-4">
             <%job.skillsRequired.forEach(skill => {%>
-            <button class="btn btn-sm rounded-sm btn-outline-info">
+            <button class="btn btn-sm rounded-sm mb-1 btn-outline-info">
               <%= skill %>
             </button>
             <%})%>
