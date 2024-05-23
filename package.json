@@ -1,0 +1,23 @@
+{
+  "name": "job-search-portal-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "NodeJS",
+    "ExpressJS",
+    "EJS",
+    "Express-validator",
+    "express-session",
+    "MVC"
+  ],
+  "author": "Kiran Kumar Matham",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
