@@ -1,0 +1,14 @@
+:root {
+  --nav-bg: #181642;
+  --white: #fff;
+}
+body {
+  font-family: "Poppins", sans-serif;
+}
+nav {
+  background-color: var(--nav-bg) !important;
+}
+
+.active {
+  color: var(--white) !important;
+}
