@@ -1,0 +1,45 @@
+<div class="">
+  <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5">
+    <%jobs.forEach(job => {%>
+    <div class="col">
+      <div class="card bg-transparent text-white border-light">
+        <div class="card-body">
+          <span
+            class="text-light bg-opacity-25 fs-6 border border-success rounded-2 pt-1 ps-1 pb-2 pe-4 actively-hiring"
+          >
+            Actively Hiring&nbsp;
+            <span>
+              <img src="/assets/trending-up.svg" alt="graph-high" />
+            </span>
+          </span>
+          <h5 class="card-title fs-4 fw-normal text-warning mt-3">
+            <%=job.companyName%>
+          </h5>
+          <p class="text-light">
+            <%=job.jobCategory%>
+            <span class="text-info"><%=job.jobDesignation%></span>
+          </p>
+          <p class="text-light">
+            <i class="fa-solid fa-location-dot"></i>
+            <%=job.jobLocation%>&nbsp;<%=job.jobCategory%>
+          </p>
+          <p class="text-light">
+            <i class="fa-solid fa-indian-rupee-sign"></i>
+            <%=job.salary%>
+          </p>
+          <div class="mb-2 mt-4">
+            <%job.skillsRequired.forEach(skill => {%>
+            <button class="btn btn-sm rounded-sm btn-outline-info">
+              <%= skill %>
+            </button>
+            <%})%>
+          </div>
+          <button class="btn btn-sm my-1 rounded-sm w-100 btn-outline-success">
+            View details
+          </button>
+        </div>
+      </div>
+    </div>
+    <%})%>
+  </div>
+</div>

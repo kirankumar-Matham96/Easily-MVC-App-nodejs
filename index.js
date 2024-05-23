@@ -2,9 +2,9 @@ import express from "express";
 import ejsLayouts from "express-ejs-layouts";
 import path from "path";
 
-import UserController from "./src/controllers/user.controller.js";
+import JobController from "./src/controllers/jobs.controller.js";
 
-const userController = new UserController();
+const userController = new JobController();
 
 const PORT = 3200;
 
