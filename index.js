@@ -4,7 +4,7 @@ import path from "path";
 
 import JobController from "./src/controllers/jobs.controller.js";
 
-const userController = new JobController();
+const jobController = new JobController();
 
 const PORT = 3200;
 
@@ -24,8 +24,9 @@ app.use(ejsLayouts);
 // applying static path
 app.use(express.static(folderPath));
 
-app.get("/", userController.getHome);
-app.get("/jobs", userController.getJobs);
+app.get("/", jobController.getHome);
+app.get("/jobs", jobController.getJobs);
+app.get("/postjob", jobController.getNewJob);
 
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);

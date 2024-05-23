@@ -8,6 +8,9 @@ class JobController {
     const jobs = JobsModel.getJobs();
     res.render("jobs", { jobs });
   }
+  getNewJob(req, res) {
+    res.render("post-new-job");
+  }
 }
 
 export default JobController;
