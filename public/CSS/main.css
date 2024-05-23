@@ -11,6 +11,7 @@
   --linkedin-color: rgb(13, 110, 253);
   --whatsapp-color: rgb(25, 135, 84);
   --light-dark-bg: rgba(13, 110, 253, 0.3);
+  --bs-box-shadow-sm: -0.313rem -0.313rem 0 rgba(255, 255, 255, 0.7);
 }
 
 /* general styles */
@@ -27,11 +28,14 @@ body {
   /* color: var(--white); */
   --bs-text-opacity: 0.8 !important;
 }
+.white-shadow {
+  box-shadow: var(--bs-box-shadow-sm);
+}
 
 /* home page */
 nav {
   background-color: var(--nav-bg) !important;
-  box-shadow: 0px 0px 9px -3px white;
+  box-shadow: 0px 0px 9px -3px var(--white);
 }
 .hero {
   height: 100%;

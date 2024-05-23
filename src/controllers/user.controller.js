@@ -1,10 +1,10 @@
-// class UserController {
-//   getHome(req, res) {
-//     res.render("home");
-//   }
-//   getJobs(req, res) {
-//     res.render("jobs");
-//   }
-// }
+class UserController {
+  getLogin(req, res) {
+    res.render("login");
+  }
+  get404(req, res) {
+    res.render("error");
+  }
+}
 
-// export default UserController;
+export default UserController;
