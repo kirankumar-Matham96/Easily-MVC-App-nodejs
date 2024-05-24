@@ -4,26 +4,34 @@
     <% if(errorMessage){ %>
     <div class="alert alert-danger" role="alert"><%= errorMessage %></div>
     <%}%>
-    <form>
+    <form action="/postjob" method="POST">
       <!-- job category dropdown -->
-      <select class="form-select mb-3" aria-label="Default select example">
+      <select
+        class="form-select mb-3"
+        aria-label="Default select example"
+        name="category"
+      >
         <option selected>Select job category</option>
-        <option value="1">Tech</option>
-        <option value="2">Non Tech</option>
+        <option value="Tech">Tech</option>
+        <option value="Non Tech">Non Tech</option>
       </select>
 
       <!-- job designation dropdown -->
-      <select class="form-select mb-3" aria-label="Default select example">
+      <select
+        class="form-select mb-3"
+        aria-label="Default select example"
+        name="destination"
+      >
         <option selected>Select job designation</option>
-        <option value="1">HR</option>
-        <option value="2">SDE</option>
-        <option value="2">DevOps</option>
-        <option value="2">MERN Developer</option>
-        <option value="2">MEAN Developer</option>
-        <option value="2">Java Developer</option>
-        <option value="2">Back-End Developer</option>
-        <option value="2">Front-End Developer</option>
-        <option value="2">Full-Stack Developer</option>
+        <option value="HR">HR</option>
+        <option value="SDE">SDE</option>
+        <option value="DevOps">DevOps</option>
+        <option value="MERN Developer">MERN Developer</option>
+        <option value="MEAN Developer">MEAN Developer</option>
+        <option value="Java Developer">Java Developer</option>
+        <option value="Back-End Developer">Back-End Developer</option>
+        <option value="Front-End Developer">Front-End Developer</option>
+        <option value="Full-Stack Developer">Full-Stack Developer</option>
       </select>
 
       <!-- job location -->
@@ -31,7 +39,12 @@
         <label for="jobLocationInput" class="form-label"
           >Enter job location</label
         >
-        <input type="text" class="form-control" id="jobLocationInput" />
+        <input
+          type="text"
+          class="form-control"
+          name="location"
+          id="jobLocationInput"
+        />
       </div>
 
       <!-- company name -->
@@ -39,6 +52,7 @@
         <span class="input-group-text" id="basic-addon1">Company Name</span>
         <input
           type="text"
+          name="name"
           class="form-control"
           aria-label="Company Name"
           aria-describedby="basic-addon1"
@@ -51,6 +65,7 @@
         <div class="w-75 mb-3 me-md-2">
           <input
             type="text"
+            name="salary"
             class="form-control"
             id="jobLocationInput"
             placeholder="enter salary"
@@ -64,6 +79,7 @@
           >
           <input
             type="number"
+            name="positions"
             class="form-control"
             aria-label="Number"
             aria-describedby="basic-addon1"
@@ -77,6 +93,7 @@
         <select
           class="form-select mb-3 mb-md-0 me-md-2"
           multiple
+          name="skills"
           id="skillsRequired"
           aria-label="Default select example"
         >
@@ -104,6 +121,7 @@
           <span class="input-group-text" id="basic-addon1">Apply by</span>
           <input
             type="date"
+            name="lastDate"
             class="form-control"
             aria-label="Apply by"
             aria-describedby="basic-addon1"

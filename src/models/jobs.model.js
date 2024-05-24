@@ -7,7 +7,7 @@ const jobs = [
     jobDesignation: "Software Engineer",
     jobLocation: "Hyderabad",
     companyName: "Deloight",
-    salary: "4.5 to 8 LPA",
+    salary: "4.5 - 8",
     applyBy: new Date().toISOString(),
     skillsRequired: ["REACT", "ANGULAR", "NODE", "EXPRESS", "MONGODB", "MYSQL"],
     numberOfOpenings: 5,
@@ -26,7 +26,6 @@ const jobs = [
 
 class JobsModel {
   constructor(
-    id,
     jobCategory,
     jobDesignation,
     jobLocation,
@@ -38,7 +37,7 @@ class JobsModel {
     jobPosted,
     applicants
   ) {
-    this.id = id;
+    this.id = uuidv4();
     this.jobCategory = jobCategory;
     this.jobDesignation = jobDesignation;
     this.jobLocation = jobLocation;
@@ -51,46 +50,41 @@ class JobsModel {
     this.applicants = applicants;
   }
 
-  static postJob(job) {
-    const {
-      id,
-      jobCategory,
-      jobDesignation,
-      jobLocation,
-      companyName,
-      salary,
-      applyBy,
-      skillsRequired,
-      numberOfOpenings,
-      jobPosted,
-      applicants,
-    } = job;
-
-    const newJob = new JobsModel(
-      id,
-      jobCategory,
-      jobDesignation,
-      jobLocation,
-      companyName,
-      salary,
-      applyBy,
-      skillsRequired,
-      numberOfOpenings,
-      jobPosted,
-      applicants
-    );
-
-    jobs.push(newJob);
-  }
-
   static getJobs() {
     return jobs;
   }
 
   static getJobById(id) {
+    console.log(id);
     const foundJob = jobs.find((job) => job.id === id);
     // return foundJob;
     return jobs[0];
+  }
+
+  static createJob(jobDetails) {
+    const {
+      category,
+      destination,
+      location,
+      name,
+      salary,
+      positions,
+      skills,
+      lastDate,
+    } = jobDetails;
+
+    const newJob = new JobsModel(
+      category,
+      destination,
+      location,
+      name,
+      salary,
+      positions,
+      skills,
+      lastDate
+    );
+
+    jobs.push(newJob);
   }
 }
 

@@ -16,6 +16,35 @@ class JobController {
     const jobFound = JobsModel.getJobById(id);
     res.render("job-details", { job: jobFound, errorMessage: null });
   }
+
+  postNewJob(req, res) {
+    const {
+      category,
+      destination,
+      location,
+      name,
+      salary,
+      positions,
+      skills,
+      lastDate,
+    } = req.body;
+
+    console.log(
+      "\n\nIn Controller => ",
+      JSON.stringify({
+        category,
+        destination,
+        location,
+        name,
+        salary,
+        positions,
+        skills,
+        lastDate,
+      })
+    );
+    JobsModel.createJob(req.body);
+    res.redirect("/jobs");
+  }
 }
 
 export default JobController;

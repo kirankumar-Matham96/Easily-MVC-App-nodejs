@@ -30,11 +30,11 @@ app.use(express.static(folderPath));
 app.get("/", jobController.getHome);
 app.get("/jobs", jobController.getJobs);
 app.get("/postjob", jobController.getNewJob);
-// app.get("/postjob", jobController.getNewJob);
+app.post("/postjob", jobController.postNewJob);
 
 /* job details route */
-// app.get("/jobs/:id", jobController.getJobDetails);
-app.get("/job", jobController.getJobDetails);
+app.get("/jobs/:id", jobController.getJobDetails);
+// app.get("/job", jobController.getJobDetails);
 
 /* login & registration routes */
 app.post("/register", userController.postRegister);
