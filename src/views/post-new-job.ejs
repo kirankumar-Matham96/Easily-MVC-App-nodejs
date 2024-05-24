@@ -1,6 +1,9 @@
 <div class="card w-75 mx-auto mt-4 white-shadow" style="width: 18rem">
   <div class="card-body">
     <h2 class="card-title fw-light text-center mb-3">Post a new Job</h2>
+    <% if(errorMessage){ %>
+    <div class="alert alert-danger" role="alert"><%= errorMessage %></div>
+    <%}%>
     <form>
       <!-- job category dropdown -->
       <select class="form-select mb-3" aria-label="Default select example">

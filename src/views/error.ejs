@@ -13,7 +13,6 @@
     class="text-danger text-center"
     style="font-size: 2.2rem; font-weight: 200"
   >
-    only recruiter is allowed to access this page, login as recruiter to
-    continue
+    <% if(errorMessage){ %> <%= errorMessage %> <%}%>
   </p>
 </div>

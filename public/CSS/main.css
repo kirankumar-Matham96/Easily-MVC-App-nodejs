@@ -25,7 +25,6 @@ body {
 }
 .h-white {
   font-weight: 400 !important;
-  /* color: var(--white); */
   --bs-text-opacity: 0.8 !important;
 }
 .white-shadow {

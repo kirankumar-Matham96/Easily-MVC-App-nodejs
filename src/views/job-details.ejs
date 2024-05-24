@@ -70,6 +70,9 @@
     >
       <div class="modal-dialog">
         <div class="modal-content">
+          <% if(errorMessage){ %>
+          <div class="alert alert-danger" role="alert"><%= errorMessage %></div>
+          <%}%>
           <div class="modal-header">
             <h1 class="modal-title fs-5 text-success" id="exampleModalLabel">
               easily!
@@ -81,7 +84,6 @@
               aria-label="Close"
             ></button>
           </div>
-
           <div class="modal-body w-75 mx-auto my-5 rounded shadow-dark">
             <h3 class="fs-4 text-center mb-3">apply in less than 1 minute</h3>
             <div class="input-group mb-3">
@@ -114,10 +116,8 @@
                 aria-describedby="basic-addon1"
               />
             </div>
-
             <div class="input-group mb-3">
               <span class="input-group-text" id="basic-addon1">Resume</span>
-
               <input
                 class="form-control"
                 type="file"

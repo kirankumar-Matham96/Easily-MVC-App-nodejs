@@ -40,47 +40,54 @@
               ></button>
             </div>
             <div class="modal-body">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Name</span>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="enter your name"
-                  aria-label="Username"
-                  aria-describedby="basic-addon1"
-                />
+              <% if(errorMessage){ %>
+              <div class="alert alert-danger" role="alert">
+                <%= errorMessage %>
               </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Email</span>
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="enter your email"
-                  aria-label="Email"
-                  aria-describedby="basic-addon1"
-                />
-              </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Password</span>
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="enter your password"
-                  aria-label="password"
-                  aria-describedby="basic-addon1"
-                />
-              </div>
-              <button class="btn mx-2 login-btn" type="button">Register</button>
+              <%}%>
+              <form action="/register" method="POST">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Name</span>
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    placeholder="enter your name"
+                    aria-label="Username"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Email</span>
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="enter your email"
+                    aria-label="Email"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1"
+                    >Password</span
+                  >
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="enter your password"
+                    aria-label="password"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <button class="btn mx-2 login-btn" type="submit">
+                  Register
+                </button>
+              </form>
             </div>
             <div class="modal-footer">
               <p>Already registered?</p>
-              <!-- <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button> -->
               <button
                 type="button"
                 class="btn btn-outline-success"
@@ -123,27 +130,38 @@
               ></button>
             </div>
             <div class="modal-body">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Email</span>
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="Email"
-                  aria-label="Email"
-                  aria-describedby="basic-addon1"
-                />
+              <% if(errorMessage){ %>
+              <div class="alert alert-danger" role="alert">
+                <%= errorMessage %>
               </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Password</span>
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Password"
-                  aria-label="Password"
-                  aria-describedby="basic-addon1"
-                />
-              </div>
-              <button class="btn mx-2 login-btn" type="button">Login</button>
+              <%}%>
+              <form action="/login" method="POST">
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Email</span>
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="Email"
+                    aria-label="Email"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1"
+                    >Password</span
+                  >
+                  <input
+                    type="password"
+                    name="password"
+                    class="form-control"
+                    placeholder="Password"
+                    aria-label="Password"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <button class="btn mx-2 login-btn" type="submit">Login</button>
+              </form>
             </div>
             <div class="modal-footer">
               <button

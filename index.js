@@ -18,6 +18,7 @@ const app = express();
 
 // using json parser
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
 app.set("views", path.join(path.resolve(), "src", "views"));
@@ -36,7 +37,9 @@ app.get("/postjob", jobController.getNewJob);
 app.get("/job", jobController.getJobDetails);
 
 /* login & registration routes */
+app.post("/register", userController.postRegister);
 app.get("/login", userController.getLogin);
+app.post("/login", userController.postLogin);
 
 /* 404 error route */
 app.get("/404", userController.get404);
