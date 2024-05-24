@@ -17,6 +17,22 @@ class JobController {
     res.render("job-details", { job: jobFound, errorMessage: null });
   }
 
+  getUpdateJob(req, res) {
+    const { id } = req.params;
+    const jobFound = JobsModel.getJobById(id);
+    res.render("update-job", { job: jobFound, errorMessage: null });
+  }
+
+  putUpdateJob(req, res) {
+    // adjusting for the single skill
+    if (typeof req.body.skills === "string") {
+      req.body.skills = [req.body.skills];
+    }
+    const {id} =req.params;
+    JobsModel.updateJob(req.body, id);
+    res.redirect("/jobs");
+  }
+
   postNewJob(req, res) {
     // adjusting for the single skill
     if (typeof req.body.skills === "string") {

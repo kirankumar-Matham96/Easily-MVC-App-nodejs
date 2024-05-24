@@ -1,0 +1,147 @@
+<div class="card w-75 mx-auto mt-4 white-shadow" style="width: 18rem">
+  <div class="card-body">
+    <h2 class="card-title fw-light text-center mb-3">Post a new Job</h2>
+    <% if(errorMessage){ %>
+    <div class="alert alert-danger" role="alert"><%= errorMessage %></div>
+    <%}%>
+    <form action="/job/update/<%=job.id%>" method="POST">
+      <!-- job category dropdown -->
+      <select
+        class="form-select mb-3"
+        aria-label="Default select example"
+        name="category"
+        required
+      >
+        <option selected>Select job category</option>
+        <option value="Tech">Tech</option>
+        <option value="Non Tech">Non Tech</option>
+      </select>
+
+      <!-- job designation dropdown -->
+      <select
+        class="form-select mb-3"
+        aria-label="Default select example"
+        name="destination"
+        required
+      >
+        <option selected>Select job designation</option>
+        <option value="HR">HR</option>
+        <option value="SDE">SDE</option>
+        <option value="DevOps">DevOps</option>
+        <option value="MERN Developer">MERN Developer</option>
+        <option value="MEAN Developer">MEAN Developer</option>
+        <option value="Java Developer">Java Developer</option>
+        <option value="Back-End Developer">Back-End Developer</option>
+        <option value="Front-End Developer">Front-End Developer</option>
+        <option value="Full-Stack Developer">Full-Stack Developer</option>
+      </select>
+
+      <!-- job location -->
+      <div class="mb-3">
+        <label for="jobLocationInput" class="form-label"
+          >Enter job location</label
+        >
+        <input
+          type="text"
+          class="form-control"
+          name="location"
+          id="jobLocationInput"
+          value="<%=job.jobLocation%>"
+          required
+        />
+      </div>
+
+      <!-- company name -->
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="basic-addon1">Company Name</span>
+        <input
+          type="text"
+          name="name"
+          class="form-control"
+          aria-label="Company Name"
+          aria-describedby="basic-addon1"
+          value="<%=job.companyName%>"
+          required
+        />
+      </div>
+
+      <!-- salary and openings -->
+      <div class="d-md-flex mb-3">
+        <!-- salary -->
+        <div class="w-75 mb-3 me-md-2">
+          <input
+            type="text"
+            name="salary"
+            class="form-control"
+            id="jobLocationInput"
+            placeholder="enter salary"
+            value="<%=job.salary%>"
+            required
+          />
+        </div>
+
+        <!-- total openings -->
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="basic-addon1"
+            >Total Positions</span
+          >
+          <input
+            type="number"
+            name="positions"
+            class="form-control"
+            aria-label="Number"
+            aria-describedby="basic-addon1"
+            value="<%=job.numberOfOpenings%>"
+            required
+          />
+        </div>
+      </div>
+
+      <!-- skills & last date to apply -->
+      <div class="d-md-flex align-items-base mb-3">
+        <!-- skills -->
+        <select
+          class="form-select mb-3 mb-md-0 me-md-2"
+          multiple
+          name="skills"
+          id="skillsRequired"
+          aria-label="Default select example"
+          required
+        >
+          <option disabled selected>Select Required Skills</option>
+          <option value="Data Structures & Algo">Data Structures & Algo</option>
+          <option value="React">React</option>
+          <option value="NodeJs">NodeJs</option>
+          <option value="Angular">Angular</option>
+          <option value="MongoDB">MongoDB</option>
+          <option value="Express">Express</option>
+          <option value="JavaScript">JavaScript</option>
+          <option value="SQL">SQL</option>
+          <option value="Java">Java</option>
+          <option value="SpringBoot">SpringBoot</option>
+          <option value="Python">Python</option>
+          <option value="C">C</option>
+          <option value="C++">C++</option>
+          <option value="C#">C#</option>
+          <option value="Go">Go</option>
+          <option value="Ruby">Ruby</option>
+        </select>
+
+        <!-- apply by -->
+        <div class="input-group">
+          <span class="input-group-text" id="basic-addon1">Apply by</span>
+          <input
+            type="date"
+            name="lastDate"
+            class="form-control"
+            aria-label="Apply by"
+            aria-describedby="basic-addon1"
+            required
+          />
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success w-100">Submit</button>
+    </form>
+  </div>
+</div>

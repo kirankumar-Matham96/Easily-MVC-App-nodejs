@@ -13,15 +13,7 @@ const jobs = [
     skillsRequired: ["REACT", "ANGULAR", "NODE", "EXPRESS", "MONGODB", "MYSQL"],
     numberOfOpenings: 5,
     jobPosted: new Date().toISOString(),
-    applicants: [
-      {
-        applicantId: uuidv4(),
-        name: "Sai Vinay Kolla",
-        email: "skolla1998@gmail.com",
-        contact: "125498638",
-        resumePath: "/files/file.pdf",
-      },
-    ],
+    applicants: [],
   },
 ];
 
@@ -32,11 +24,10 @@ class JobsModel {
     jobLocation,
     companyName,
     salary,
-    applyBy,
-    skillsRequired,
     numberOfOpenings,
-    jobPosted,
-    applicants
+    skillsRequired,
+    applyBy,
+    applicants = []
   ) {
     this.id = uuidv4();
     this.jobCategory = jobCategory;
@@ -45,13 +36,14 @@ class JobsModel {
     this.companyName = companyName;
     this.salary = salary;
     this.applyBy = applyBy;
-    this.skillsRequired = [...skillsRequired];
+    this.skillsRequired = skillsRequired;
     this.numberOfOpenings = numberOfOpenings;
-    this.jobPosted = jobPosted;
+    this.jobPosted = new Date().toISOString();
     this.applicants = applicants;
   }
 
   static getJobs() {
+    console.log({ jobs });
     return jobs;
   }
 
@@ -73,9 +65,6 @@ class JobsModel {
       lastDate,
     } = jobDetails;
 
-    console.log({ skills });
-    console.log(typeof skills);
-
     const newJob = new JobsModel(
       category,
       destination,
@@ -90,9 +79,35 @@ class JobsModel {
     jobs.push(newJob);
   }
 
+  static updateJob(updatedJob, id) {
+    const jobFound = jobs.find((job) => job.id === id);
+
+    jobFound.jobCategory = updatedJob.category;
+    jobFound.jobDesignation = updatedJob.destination;
+    jobFound.jobLocation = updatedJob.location;
+    jobFound.companyName = updatedJob.name;
+    jobFound.salary = updatedJob.salary;
+    jobFound.applyBy = updatedJob.lastDate;
+    jobFound.skillsRequired = updatedJob.skills;
+    jobFound.numberOfOpenings = updatedJob.positions;
+  }
+
   static addApplicant(applicant, jobId) {
     const newApplicant = ApplicantModel.addApplicant(applicant);
-    console.log({ newApplicant });
+
+    // find job
+    const jobFound = jobs.find((job) => job.id === jobId);
+
+    // add applicant id to the job
+    jobFound.applicants.push(newApplicant.id);
+  }
+
+  static getApplicantsOfAJob(id) {
+    const jobFound = jobs.find((job) => job.id === id);
+    const applicantsList = jobFound.applicants.map((applicant) => {
+      return ApplicantModel.getApplicantById(applicant.id);
+    });
+    return applicantsList;
   }
 }
 

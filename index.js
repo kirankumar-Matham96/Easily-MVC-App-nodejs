@@ -6,7 +6,7 @@ import JobController from "./src/controllers/jobs.controller.js";
 import UserController from "./src/controllers/user.controller.js";
 
 // middlewares
-import {uploadFile} from "./src/middlewares/multer.middleware.js";
+import { uploadFile } from "./src/middlewares/multer.middleware.js";
 
 const jobController = new JobController();
 const userController = new UserController();
@@ -33,7 +33,6 @@ app.use(express.static(folderPath));
 
 // setting up multer middleware
 
-
 /* basic routes */
 app.get("/", jobController.getHome);
 
@@ -43,9 +42,15 @@ app.get("/postjob", jobController.getNewJob);
 app.post("/postjob", jobController.postNewJob);
 // job details route
 app.get("/jobs/:id", jobController.getJobDetails);
-
 // apply for a job
-app.post("/jobs/:id/applicants/", uploadFile.single("resume"), jobController.postAddApplicant);
+app.post(
+  "/jobs/:id/applicants/",
+  uploadFile.single("resume"),
+  jobController.postAddApplicant
+);
+// update job
+app.get("/job/update/:id", jobController.getUpdateJob);
+app.post("/job/update/:id", jobController.putUpdateJob);
 
 /* login & registration routes */
 app.post("/register", userController.postRegister);

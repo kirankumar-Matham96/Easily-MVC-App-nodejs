@@ -28,11 +28,12 @@
             <%=job.salary%> LPA
           </p>
           <div class="mb-2 mt-4">
+            <%if(job.skillsRequired.length > 0){%>
             <%job.skillsRequired.forEach(skill => {%>
             <button class="btn btn-sm rounded-sm mb-1 btn-outline-info">
               <%= skill %>
             </button>
-            <%})%>
+            <%})%> <%}%>
           </div>
           <a href="/jobs/<%=job.id%>">
             <button

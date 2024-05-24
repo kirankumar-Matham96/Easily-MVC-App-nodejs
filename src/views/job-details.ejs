@@ -1,160 +1,188 @@
 <%if(job){%>
-<div class="bg-white pb-3 m-0 white-shadow rounded">
-  <div>
-    <img
-      src="/images/job-details-banner.png"
-      alt="job details"
-      class="w-100 rounded-top"
-    />
-  </div>
-  <div class="px-5 content">
-    <h1 class="my-3 text-center fw-light">
-      <span class="text-danger"><%=job.jobDesignation%> </span>
-      <span class="text-success"> opportunity in <%=job.jobLocation%> at </span>
-      <span class="text-info"> <%=job.companyName%> </span>
-    </h1>
-    <p class="fs-4 m-0 p-0"><%=job.companyName%></p>
-    <p class="m-0 p-0">
-      <%=job.jobCategory%>
-      <span><%=job.jobDesignation%></span>
-    </p>
-
-    <ul class="list-none m-0 pt-2 pb-3 ps-2 job-details">
-      <li>
-        <img src="/assets/location-icon.svg" alt="location" />
-        <%=job.jobLocation%>
-      </li>
-      <li>
-        <img src="/assets/inr.svg" alt="inr" />
-        <%=job.salary%>
-      </li>
-      <li>
-        <img src="/assets/hour-glass.svg" alt="hour glass" />
-        <%=job.applyBy%>
-      </li>
-      <li>
-        <img src="/assets/bar-chart-fill.svg" alt="bar chart" />
-        <%#<i class="fa-solid fa-signal fs-xs"></i>%> <%=job.numberOfOpenings%>
-      </li>
-      <li>
-        <a>
-          <img src="/assets/two-people.svg" alt="Users" />
-          Applicants <%=job.applicants.length%>
-        </a>
-      </li>
-    </ul>
-  </div>
-  <div class="ms-5 ps-2 mb-3">
-    <%job.skillsRequired.forEach(skill => {%>
-    <button class="btn btn-sm rounded-sm mb-1 btn-outline-success">
-      <%= skill %>
-    </button>
-    <%})%>
-    <div class="mt-2">
-      <button
-        class="btn btn-primary btn-large px-5"
-        type="button"
-        data-bs-toggle="modal"
-        data-bs-target="#applyModal"
-      >
-        Apply Now
-      </button>
+  <div class="bg-white pb-3 m-0 white-shadow rounded">
+    <div>
+      <img
+        src="/images/job-details-banner.png"
+        alt="job details"
+        class="w-100 rounded-top"
+      />
     </div>
-    <%# register Modal starts %>
-    <div
-      class="modal fade"
-      id="applyModal"
-      tabindex="-1"
-      aria-labelledby="exampleModalLabel"
-      aria-hidden="true"
-    >
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <% if(errorMessage){ %>
-          <div class="alert alert-danger" role="alert"><%= errorMessage %></div>
-          <%}%>
-          <div class="modal-header">
-            <h1 class="modal-title fs-5 text-success" id="exampleModalLabel">
-              easily!
-            </h1>
-            <button
-              type="button"
-              class="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-            ></button>
-          </div>
-          <div class="modal-body w-75 mx-auto my-5 rounded shadow-dark">
-            <h3 class="fs-4 text-center mb-3">apply in less than 1 minute</h3>
+    <div class="px-5 content">
+      <h1 class="my-3 text-center fw-light">
+        <span class="text-danger"><%=job.jobDesignation%> </span>
+        <span class="text-success"> opportunity in <%=job.jobLocation%> at </span>
+        <span class="text-info"> <%=job.companyName%> </span>
+      </h1>
+      <div class="d-flex align-items-center my-3">
+        <span
+          class="text-dark fs-6 border border-success bg-warning rounded-2 pt-1 ps-1 pb-2 pe-4 me-3 actively-hiring"
+        >
+          Actively Hiring&nbsp;
+          <span>
+            <img src="/assets/trending-up.svg" alt="graph-high" />
+          </span>
+        </span>
 
-            <form action="/jobs/<%=job.id%>/applicants/" method="POST" enctype="multipart/form-data">
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Name</span>
-                <input
-                  type="text"
-                  name="name"
-                  class="form-control"
-                  placeholder="enter your name"
-                  aria-label="Name"
-                  aria-describedby="basic-addon1"
-                />
-              </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Email</span>
-                <input
-                  type="email"
-                  name="email"
-                  class="form-control"
-                  placeholder="enter your email"
-                  aria-label="Email"
-                  aria-describedby="basic-addon1"
-                />
-              </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Contact</span>
-                <input
-                  type="text"
-                  name="contact"
-                  class="form-control"
-                  placeholder="+91 ____ __ ____"
-                  aria-label="Contact"
-                  aria-describedby="basic-addon1"
-                />
-              </div>
-              <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Resume</span>
-                <input
-                  class="form-control"
-                  name="resume"
-                  type="file"
-                  id="formFile"
-                  aria-label="Choose File"
-                  aria-describedby="basic-addon1"
-                />
-              </div>
-              <button class="btn mx-2 my-3 btn-success w-100" type="submit">
-                Submit
-              </button>
-            </form>
-
-          </div>
-          <div class="modal-footer">
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-bs-dismiss="modal"
+        <a href="/job/update/<%=job.id%>">
+          <button 
+            class="border-0 bg-transparent p-0 m-0 me-1"
+            style="width: 38px; height: 38px"
+            title="Edit Job Details"
             >
-              Close
-            </button>
-            <button type="button" class="btn btn-primary">Save changes</button>
+            <img src="/assets/edit-icon.svg" alt="edit"  style="width: 100%"/>
+          </button>
+        </a>
+        <a href="/job/delete/<%=job.id%>">
+          <button class="btn btn-link-danger text-danger fs-2" title="Delete Job">
+            <i class="fa-solid fa-file-excel"></i>
+          </butt>
+        </a>
+      </div>
+      <p class="fs-4 m-0 p-0"><%=job.companyName%></p>
+      <p class="m-0 p-0">
+        <%=job.jobCategory%>
+        <span><%=job.jobDesignation%></span>
+      </p>
+
+      <ul class="list-none m-0 pt-2 pb-3 ps-4 job-details">
+        <li>
+          <img src="/assets/location-icon.svg" alt="location" />
+          <%=job.jobLocation%>
+        </li>
+        <li>
+          <img src="/assets/inr.svg" alt="inr" />
+          <%=job.salary%>
+        </li>
+        <li>
+          <img src="/assets/hour-glass.svg" alt="hour glass" />
+          <%=job.applyBy%>
+        </li>
+        <li>
+          <img src="/assets/bar-chart-fill.svg" alt="bar chart" />
+          <%#<i class="fa-solid fa-signal fs-xs"></i>%> <%=job.numberOfOpenings%>
+        </li>
+        <li>
+          <a>
+            <img src="/assets/two-people.svg" alt="Users" />
+            Applicants <%=job.applicants ? job.applicants.length : 0 %>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="ms-5 ps-2 mb-3">
+      <%job.skillsRequired.forEach(skill => {%>
+      <button class="btn btn-sm rounded-sm mb-1 btn-outline-success">
+        <%= skill %>
+      </button>
+      <%})%>
+      <div class="mt-2">
+        <button
+          class="btn btn-primary btn-large px-5"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#applyModal"
+        >
+          Apply Now
+        </button>
+      </div>
+      <%# Apply for job Modal starts %>
+      <div
+        class="modal fade"
+        id="applyModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <% if(errorMessage){ %>
+            <div class="alert alert-danger" role="alert"><%= errorMessage %></div>
+            <%}%>
+            <div class="modal-header">
+              <h1 class="modal-title fs-5 text-success" id="exampleModalLabel">
+                easily!
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body w-75 mx-auto my-5 rounded shadow-dark">
+              <h3 class="fs-4 text-center mb-3">apply in less than 1 minute</h3>
+
+              <form
+                action="/jobs/<%=job.id%>/applicants/"
+                method="POST"
+                enctype="multipart/form-data"
+              >
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Name</span>
+                  <input
+                    type="text"
+                    name="name"
+                    class="form-control"
+                    placeholder="enter your name"
+                    aria-label="Name"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Email</span>
+                  <input
+                    type="email"
+                    name="email"
+                    class="form-control"
+                    placeholder="enter your email"
+                    aria-label="Email"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Contact</span>
+                  <input
+                    type="text"
+                    name="contact"
+                    class="form-control"
+                    placeholder="+91 ____ __ ____"
+                    aria-label="Contact"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text" id="basic-addon1">Resume</span>
+                  <input
+                    class="form-control"
+                    name="resume"
+                    type="file"
+                    id="formFile"
+                    aria-label="Choose File"
+                    aria-describedby="basic-addon1"
+                  />
+                </div>
+                <button class="btn mx-2 my-3 btn-success w-100" type="submit">
+                  Submit
+                </button>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-secondary"
+                data-bs-dismiss="modal"
+              >
+                Close
+              </button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
           </div>
         </div>
       </div>
+      <%# Apply for job Modal ends %>
     </div>
-    <%# register Modal ends %>
+    <p class="btn btn-success rounded my-1 ms-5 fs-6 fw-light">
+      Posted: <%=job.jobPosted%>
+    </p>
   </div>
-  <p class="btn btn-success rounded my-1 ms-5 fs-6 fw-light">
-    Posted: <%=job.jobPosted%>
-  </p>
-</div>
 <%}%>
