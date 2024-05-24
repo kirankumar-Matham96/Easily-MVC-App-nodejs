@@ -18,31 +18,17 @@ class JobController {
   }
 
   postNewJob(req, res) {
-    const {
-      category,
-      destination,
-      location,
-      name,
-      salary,
-      positions,
-      skills,
-      lastDate,
-    } = req.body;
+    // adjusting for the single skill
+    if (typeof req.body.skills === "string") {
+      req.body.skills = [req.body.skills];
+    }
 
-    console.log(
-      "\n\nIn Controller => ",
-      JSON.stringify({
-        category,
-        destination,
-        location,
-        name,
-        salary,
-        positions,
-        skills,
-        lastDate,
-      })
-    );
     JobsModel.createJob(req.body);
+    res.redirect("/jobs");
+  }
+
+  postAddApplicant(req,res){
+    JobsModel.addApplicant(req.body);
     res.redirect("/jobs");
   }
 }

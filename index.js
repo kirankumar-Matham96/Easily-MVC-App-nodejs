@@ -27,19 +27,24 @@ app.use(ejsLayouts);
 // applying static path
 app.use(express.static(folderPath));
 
+/* basic routes */
 app.get("/", jobController.getHome);
+
+/* job related routes */
 app.get("/jobs", jobController.getJobs);
 app.get("/postjob", jobController.getNewJob);
 app.post("/postjob", jobController.postNewJob);
-
-/* job details route */
+// job details route
 app.get("/jobs/:id", jobController.getJobDetails);
-// app.get("/job", jobController.getJobDetails);
+
+// apply for a job
+app.post("/jobs/:id/applicants/", jobController.postAddApplicant);
 
 /* login & registration routes */
 app.post("/register", userController.postRegister);
 app.get("/login", userController.getLogin);
 app.post("/login", userController.postLogin);
+app.get("/logout");
 
 /* 404 error route */
 app.get("/404", userController.get404);

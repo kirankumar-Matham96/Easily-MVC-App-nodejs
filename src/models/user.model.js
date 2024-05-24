@@ -10,6 +10,10 @@ class UserModel {
     this.password = password;
   }
 
+  static getUsers(){
+    return registeredUsers;
+  }
+
   static registerUser(user) {
     const { name, email, password } = user;
     const newUser = new UserModel(name, email, password);

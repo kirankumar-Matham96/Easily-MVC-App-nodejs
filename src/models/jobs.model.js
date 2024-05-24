@@ -44,7 +44,7 @@ class JobsModel {
     this.companyName = companyName;
     this.salary = salary;
     this.applyBy = applyBy;
-    this.skillsRequired = skillsRequired;
+    this.skillsRequired = [...skillsRequired];
     this.numberOfOpenings = numberOfOpenings;
     this.jobPosted = jobPosted;
     this.applicants = applicants;
@@ -57,8 +57,7 @@ class JobsModel {
   static getJobById(id) {
     console.log(id);
     const foundJob = jobs.find((job) => job.id === id);
-    // return foundJob;
-    return jobs[0];
+    return foundJob;
   }
 
   static createJob(jobDetails) {
@@ -72,6 +71,9 @@ class JobsModel {
       skills,
       lastDate,
     } = jobDetails;
+    
+    console.log({ skills });
+    console.log(typeof skills);
 
     const newJob = new JobsModel(
       category,
@@ -86,6 +88,10 @@ class JobsModel {
 
     jobs.push(newJob);
   }
+
+  // static addApplicant(applicant){
+  //   const newApplicant = 
+  // }
 }
 
 export default JobsModel;
