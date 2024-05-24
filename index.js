@@ -5,6 +5,9 @@ import path from "path";
 import JobController from "./src/controllers/jobs.controller.js";
 import UserController from "./src/controllers/user.controller.js";
 
+// middlewares
+import {uploadFile} from "./src/middlewares/multer.middleware.js";
+
 const jobController = new JobController();
 const userController = new UserController();
 
@@ -20,12 +23,16 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// setting up ejs layouts
 app.set("view engine", "ejs");
 app.set("views", path.join(path.resolve(), "src", "views"));
 app.use(ejsLayouts);
 
 // applying static path
 app.use(express.static(folderPath));
+
+// setting up multer middleware
+
 
 /* basic routes */
 app.get("/", jobController.getHome);
@@ -38,7 +45,7 @@ app.post("/postjob", jobController.postNewJob);
 app.get("/jobs/:id", jobController.getJobDetails);
 
 // apply for a job
-app.post("/jobs/:id/applicants/", jobController.postAddApplicant);
+app.post("/jobs/:id/applicants/", uploadFile.single("resume"), jobController.postAddApplicant);
 
 /* login & registration routes */
 app.post("/register", userController.postRegister);

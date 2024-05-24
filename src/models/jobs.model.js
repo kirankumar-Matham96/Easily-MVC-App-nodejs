@@ -1,4 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
+import ApplicantModel from "./applicant.model.js";
 
 const jobs = [
   {
@@ -71,7 +72,7 @@ class JobsModel {
       skills,
       lastDate,
     } = jobDetails;
-    
+
     console.log({ skills });
     console.log(typeof skills);
 
@@ -89,9 +90,10 @@ class JobsModel {
     jobs.push(newJob);
   }
 
-  // static addApplicant(applicant){
-  //   const newApplicant = 
-  // }
+  static addApplicant(applicant, jobId) {
+    const newApplicant = ApplicantModel.addApplicant(applicant);
+    console.log({ newApplicant });
+  }
 }
 
 export default JobsModel;

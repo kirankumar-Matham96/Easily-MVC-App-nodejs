@@ -27,8 +27,18 @@ class JobController {
     res.redirect("/jobs");
   }
 
-  postAddApplicant(req,res){
-    JobsModel.addApplicant(req.body);
+  postAddApplicant(req, res) {
+    // this is the job id
+    const { id } = req.params;
+
+    // getting resume file path
+    const resume = req.file.filename;
+    console.log({ resume });
+
+    // adding resume file path to the request object
+    req.body.resume = resume;
+
+    JobsModel.addApplicant(req.body, id);
     res.redirect("/jobs");
   }
 }

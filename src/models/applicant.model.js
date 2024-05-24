@@ -1,7 +1,10 @@
+import { v4 as uuidv4 } from "uuid";
+
 const applicants = [];
 
 class ApplicantModel {
   constructor(name, email, contact, resume) {
+    this.id = uuidv4();
     this.name = name;
     this.email = email;
     this.contact = contact;
@@ -12,9 +15,11 @@ class ApplicantModel {
     return applicants;
   }
 
-  static addApplicant(name, email, contact, resume) {
+  static addApplicant(applicant) {
+    const {name, email, contact, resume} = applicant;
     const newApplicant = new ApplicantModel(name, email, contact, resume);
     applicants.push(newApplicant);
+    return newApplicant;
   }
 
   static getApplicantById(id) {
@@ -32,8 +37,11 @@ class ApplicantModel {
     applicantFound.resume = resume;
   }
 
-  static removeApplicant(id){
-    
+  static removeApplicant(id) {
+    const applicantIndex = applicants.findIndex(
+      (applicant) => applicant.id === id
+    );
+    applicants.splice(applicantIndex, 1);
   }
 }
 
