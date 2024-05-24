@@ -11,6 +11,11 @@ class JobController {
   getNewJob(req, res) {
     res.render("post-new-job");
   }
+  getJobDetails(req,res){
+    const {id} = req.params;
+    const jobFound = JobsModel.getJobById(id);
+    res.render("job-details", {job: jobFound});
+  }
 }
 
 export default JobController;

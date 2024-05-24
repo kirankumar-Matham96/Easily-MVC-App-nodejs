@@ -33,7 +33,7 @@ body {
 }
 
 /* home page */
-nav {
+.nav {
   background-color: var(--nav-bg) !important;
   box-shadow: 0px 0px 9px -3px var(--white);
 }
@@ -85,4 +85,14 @@ nav {
 
 .actively-hiring {
   background-color: var(--light-dark-bg);
+}
+
+/* job details styles */
+.job-details {
+  list-style-type: none;
+  padding: 1rem;
+}
+.shadow-dark {
+  box-shadow: -2px -3px 0px 0px var(--bg-color),
+    1px 2px 8px -4px var(--bg-color);
 }

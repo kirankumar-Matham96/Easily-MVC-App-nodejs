@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 const jobs = [
   {
     id: uuidv4(),
-    jobCategory: "Full Time",
+    jobCategory: "Tech",
     jobDesignation: "Software Engineer",
     jobLocation: "Hyderabad",
     companyName: "Deloight",
@@ -85,6 +85,12 @@ class JobsModel {
 
   static getJobs() {
     return jobs;
+  }
+
+  static getJobById(id) {
+    const foundJob = jobs.find((job) => job.id === id);
+    // return foundJob;
+    return jobs[0];
   }
 }
 

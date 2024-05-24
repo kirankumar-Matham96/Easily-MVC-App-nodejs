@@ -31,6 +31,10 @@ app.get("/jobs", jobController.getJobs);
 app.get("/postjob", jobController.getNewJob);
 // app.get("/postjob", jobController.getNewJob);
 
+/* job details route */
+// app.get("/jobs/:id", jobController.getJobDetails);
+app.get("/job", jobController.getJobDetails);
+
 /* login & registration routes */
 app.get("/login", userController.getLogin);
 
