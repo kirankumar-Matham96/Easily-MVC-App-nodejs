@@ -52,6 +52,9 @@ app.post(
 app.get("/job/update/:id", jobController.getUpdateJob);
 app.post("/job/update/:id", jobController.putUpdateJob);
 
+// delete job
+app.get("/job/delete/:id", jobController.getDeleteJob);
+
 /* login & registration routes */
 app.post("/register", userController.postRegister);
 app.get("/login", userController.getLogin);

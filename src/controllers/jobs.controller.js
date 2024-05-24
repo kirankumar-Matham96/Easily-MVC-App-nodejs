@@ -28,8 +28,14 @@ class JobController {
     if (typeof req.body.skills === "string") {
       req.body.skills = [req.body.skills];
     }
-    const {id} =req.params;
+    const { id } = req.params;
     JobsModel.updateJob(req.body, id);
+    res.redirect("/jobs");
+  }
+
+  getDeleteJob(req, res) {
+    const { id } = req.params;
+    JobsModel.deleteJob(id);
     res.redirect("/jobs");
   }
 

@@ -92,6 +92,11 @@ class JobsModel {
     jobFound.numberOfOpenings = updatedJob.positions;
   }
 
+  static deleteJob(id) {
+    const jobIndex = jobs.findIndex((job) => job.id === id);
+    jobs.splice(jobIndex, 1);
+  }
+
   static addApplicant(applicant, jobId) {
     const newApplicant = ApplicantModel.addApplicant(applicant);
 
