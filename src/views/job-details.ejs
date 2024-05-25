@@ -22,8 +22,7 @@
             <img src="/assets/trending-up.svg" alt="graph-high" />
           </span>
         </span>
-        <h1><%=locals.userEmail%></h1>
-        <%if(locals.userEmail){%>
+        <%if(userEmail){%>
           <a href="/job/update/<%=job.id%>">
             <button 
               class="border-0 bg-transparent p-0 m-0 me-1"
@@ -33,7 +32,7 @@
               <img src="/assets/edit-icon.svg" alt="edit"  style="width: 100%"/>
             </button>
           </a>
-          <a href="/job/delete/<%=job.id%>">
+          <a href="/job/delete/<%=job.id%>" class="text-danger">
             <button class="btn btn-link-danger text-danger fs-2" title="Delete Job">
               <i class="fa-solid fa-file-excel"></i>
             </butt>

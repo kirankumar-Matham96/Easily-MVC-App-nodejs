@@ -14,7 +14,11 @@ class JobController {
   getJobDetails(req, res) {
     const { id } = req.params;
     const jobFound = JobsModel.getJobById(id);
-    res.render("job-details", { job: jobFound, errorMessage: null });
+    res.render("job-details", {
+      job: jobFound,
+      userEmail: req.session.userEmail,
+      errorMessage: null,
+    });
   }
 
   getUpdateJob(req, res) {
