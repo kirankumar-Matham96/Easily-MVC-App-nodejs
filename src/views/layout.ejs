@@ -24,7 +24,7 @@
       crossorigin="anonymous"
     ></script>
     <!-- local css -->
-    <link rel="stylesheet" href="CSS/main.css" />
+    <link rel="stylesheet" href="/CSS/main.css" />
   </head>
   <body>
     <div class="bg-container">
@@ -73,7 +73,11 @@
                   Recruiter
                 </a>
                 <ul class="dropdown-menu text-white-50">
+                  <%if(locals.userEmail){%>
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                  <%}else{%>
                   <li><a class="dropdown-item" href="/login">Login</a></li>
+                  <%}%>
                   <li>
                     <a class="dropdown-item" href="/postjob">Post New Job</a>
                   </li>
@@ -102,6 +106,6 @@
       integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
       crossorigin="anonymous"
     ></script>
-    <script src="main.js"></script>
+    <script src="/JS/main.js"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from "uuid";
 import ApplicantModel from "./applicant.model.js";
 
-const jobs = [
+export const jobs = [
   {
     id: uuidv4(),
     jobCategory: "Tech",
@@ -43,7 +43,6 @@ class JobsModel {
   }
 
   static getJobs() {
-    console.log({ jobs });
     return jobs;
   }
 

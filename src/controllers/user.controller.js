@@ -1,4 +1,5 @@
 import UserModel from "../models/user.model.js";
+import { jobs } from "../models/jobs.model.js";
 class UserController {
   postRegister(req, res) {
     UserModel.registerUser(req.body);
@@ -9,12 +10,26 @@ class UserController {
     const userFound = UserModel.login(req.body);
     if (userFound) {
       if (userFound.password === req.body.password) {
-        return res.redirect("/jobs");
+        req.session.userEmail = userFound.email;
+        return res.render("jobs", {
+          jobs,
+          userEmail: req.session.userEmail,
+        });
       } else {
         return res.render("login", { errorMessage: "Invalid credentials!" });
       }
     }
     res.render("error", { errorMessage: "User not found pls register" });
+  }
+
+  getLogout(req, res) {
+    req.session.destroy((err) => {
+      if (err) {
+        console.log(err);
+      } else {
+        res.redirect("/");
+      }
+    });
   }
 
   getLogin(req, res) {
