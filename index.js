@@ -1,9 +1,11 @@
+/* dependencies */
 import express from "express";
 import session from "express-session";
 import ejsLayouts from "express-ejs-layouts";
 import path from "path";
 import cookieParser from "cookie-parser";
 
+/* controllers */
 import JobController from "./src/controllers/jobs.controller.js";
 import UserController from "./src/controllers/user.controller.js";
 
@@ -12,6 +14,7 @@ import { auth } from "./src/middlewares/auth.middleware.js";
 import { uploadFile } from "./src/middlewares/multer.middleware.js";
 import { lastVisit } from "./src/middlewares/lastVisit.middleware.js";
 import { sendConfirmationMail } from "./src/middlewares/mailer.middleware.js";
+import UserValidations from "./src/middlewares/userValidation.middleware.js";
 
 const jobController = new JobController();
 const userController = new UserController();
@@ -81,9 +84,13 @@ app.delete("/jobs/delete/:id", auth, jobController.postDeleteJob);
 app.get("/jobs/applicants/:id", auth, jobController.getApplicants);
 
 /* login & registration routes */
-app.post("/register", userController.postRegister);
+app.post(
+  "/register",
+  UserValidations.validateRegister,
+  userController.postRegister
+);
 app.get("/login", userController.getLogin);
-app.post("/login", userController.postLogin);
+app.post("/login", UserValidations.validateLogin, userController.postLogin);
 app.get("/logout", userController.getLogout);
 
 /* 404 error route */
