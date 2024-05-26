@@ -30,6 +30,8 @@ class UserController {
         res.redirect("/");
       }
     });
+
+    res.clearCookie("lastVisit");
   }
 
   getLogin(req, res) {

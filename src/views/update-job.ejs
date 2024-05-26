@@ -145,3 +145,10 @@
     </form>
   </div>
 </div>
+<%if(userEmail && locals.lastVisit){%>
+  <div
+    class="container-fluid bg-black text-success position-absolute bottom-0 start-0"
+  >
+    Your last visit was on: <%= locals.lastVisit %>
+  </div>
+  <%}%>

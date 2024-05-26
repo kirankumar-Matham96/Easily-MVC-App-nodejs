@@ -10,6 +10,7 @@ import UserController from "./src/controllers/user.controller.js";
 // middlewares
 import { auth } from "./src/middlewares/auth.middleware.js";
 import { uploadFile } from "./src/middlewares/multer.middleware.js";
+import { lastVisit } from "./src/middlewares/lastVisit.middleware.js";
 import { sendConfirmationMail } from "./src/middlewares/mailer.middleware.js";
 
 const jobController = new JobController();
@@ -28,6 +29,10 @@ app.use(express.static(folderPath));
 
 // setting up cookie parser to set the sessions and cookies
 app.use(cookieParser());
+
+// using lastVisit middleware at application level
+app.use(lastVisit);
+
 // setting up sessions
 const sessionConfig = {
   secret: "My Secret",
@@ -70,7 +75,7 @@ app.get("/jobs/update/:id", auth, jobController.getUpdateJob);
 app.post("/jobs/update/:id", auth, jobController.putUpdateJob);
 
 // delete job
-app.delete("/jobs/delete/:id", auth, jobController.getDeleteJob);
+app.delete("/jobs/delete/:id", auth, jobController.postDeleteJob);
 
 /* applicants routes */
 app.get("/jobs/applicants/:id", auth, jobController.getApplicants);

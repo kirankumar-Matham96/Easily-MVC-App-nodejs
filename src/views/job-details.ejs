@@ -15,7 +15,7 @@
       </h1>
       <div class="d-flex align-items-center my-3">
         <span
-          class="text-dark fs-6 border border-success bg-warning rounded-2 pt-1 ps-1 pb-2 pe-4 me-3 actively-hiring"
+          class="text-dark fs-6 border border-success bg-warning rounded-2 pt-1 ps-1 pb-1 pe-4 me-3 actively-hiring"
         >
           Actively Hiring&nbsp;
           <span>
@@ -193,4 +193,11 @@
       Posted: <%=job.jobPosted%>
     </p>
   </div>
+  <%if(userEmail && locals.lastVisit){%>
+    <div
+      class="container-fluid bg-black text-success position-absolute bottom-0 start-0"
+    >
+      Your last visit was on: <%= locals.lastVisit %>
+    </div>
+    <%}%>
 <%}%>

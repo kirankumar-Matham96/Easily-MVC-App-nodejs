@@ -11,11 +11,17 @@ class JobController {
 
   getJobs(req, res) {
     const jobs = JobsModel.getJobs();
-    res.render("jobs", { jobs });
+    res.render("jobs", {
+      jobs,
+      userEmail: req.session.userEmail,
+    });
   }
 
   getNewJob(req, res) {
-    res.render("post-new-job", { errorMessage: null });
+    res.render("post-new-job", {
+      errorMessage: null,
+      userEmail: req.session.userEmail,
+    });
   }
 
   getJobDetails(req, res) {
@@ -31,7 +37,11 @@ class JobController {
   getUpdateJob(req, res) {
     const { id } = req.params;
     const jobFound = JobsModel.getJobById(id);
-    res.render("update-job", { job: jobFound, errorMessage: null });
+    res.render("update-job", {
+      job: jobFound,
+      errorMessage: null,
+      userEmail: req.session.userEmail,
+    });
   }
 
   putUpdateJob(req, res) {
@@ -44,7 +54,7 @@ class JobController {
     return res.status(200).redirect("/jobs");
   }
 
-  getDeleteJob(req, res) {
+  postDeleteJob(req, res) {
     const { id } = req.params;
     JobsModel.deleteJob(id);
     return res.status(200).send({ message: "Post deleted successfully!" });
@@ -63,7 +73,10 @@ class JobController {
   getApplicants(req, res) {
     const { id } = req.params;
     const applicants = JobsModel.getApplicantsOfAJob(id);
-    res.render("applicants", { applicants });
+    res.render("applicants", {
+      applicants,
+      userEmail: req.session.userEmail,
+    });
   }
 
   postAddApplicant(req, res) {

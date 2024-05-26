@@ -1,11 +1,18 @@
 <div class="mt-4">
+  <%if(userEmail && locals.lastVisit){%>
+  <div
+    class="container-fluid bg-black text-success position-absolute bottom-0 start-0"
+  >
+    Your last visit was on: <%= locals.lastVisit %>
+  </div>
+  <%}%>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5">
     <%jobs.forEach(job => {%>
     <div class="col">
       <div class="card bg-transparent text-white border-light">
         <div class="card-body">
           <span
-            class="text-light bg-opacity-25 fs-6 border border-success rounded-2 pt-1 ps-1 pb-2 pe-4 actively-hiring"
+            class="text-light bg-opacity-25 fs-6 border border-success rounded-2 pt-1 ps-1 pb-1 pe-4 actively-hiring"
           >
             Actively Hiring&nbsp;
             <span>
