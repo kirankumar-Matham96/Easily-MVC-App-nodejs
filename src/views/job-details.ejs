@@ -33,10 +33,11 @@
             </button>
           </a>
           <a href="/job/delete/<%=job.id%>" class="text-danger">
-            <button class="btn btn-link-danger text-danger fs-2" title="Delete Job">
+          Added onclick event to the button  
+          </a>
+            <button class="btn btn-link-danger text-danger fs-2"  onclick="confirmDelete('<%=job.id%>')" title="Delete Job">
               <i class="fa-solid fa-file-excel"></i>
             </butt>
-          </a>
         <%}%>
       </div>
       <p class="fs-4 m-0 p-0"><%=job.companyName%></p>

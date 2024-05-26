@@ -68,7 +68,8 @@ app.get("/job/update/:id", auth, jobController.getUpdateJob);
 app.post("/job/update/:id", auth, jobController.putUpdateJob);
 
 // delete job
-app.get("/job/delete/:id", auth, jobController.getDeleteJob);
+// app.get("/job/delete/:id", auth, jobController.getDeleteJob);
+app.delete("/job/delete/:id", auth, jobController.getDeleteJob);
 
 /* applicants routes */
 app.get("/jobs/applicants/:id", auth, jobController.getApplicants);
