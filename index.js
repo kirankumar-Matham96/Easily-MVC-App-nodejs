@@ -71,7 +71,7 @@ app.post("/job/update/:id", auth, jobController.putUpdateJob);
 app.get("/job/delete/:id", auth, jobController.getDeleteJob);
 
 /* applicants routes */
-app.get("/jobs/applicants/:id", jobController.getApplicants);
+app.get("/jobs/applicants/:id", auth, jobController.getApplicants);
 
 /* login & registration routes */
 app.post("/register", userController.postRegister);

@@ -12,9 +12,9 @@
         name="category"
         required
       >
-        <option selected>Select job category</option>
-        <option value="Tech">Tech</option>
-        <option value="Non Tech">Non Tech</option>
+        <option disabled>Select job category</option>
+        <option <%=job.skillsRequired.includes("Tech") ? 'selected' : "";%> value="Tech">Tech</option>
+        <option <%=job.skillsRequired.includes("Non Tech") ? 'selected' : "";%> value="Non Tech">Non Tech</option>
       </select>
 
       <!-- job designation dropdown -->
@@ -24,16 +24,16 @@
         name="destination"
         required
       >
-        <option selected>Select job designation</option>
-        <option value="HR">HR</option>
-        <option value="SDE">SDE</option>
-        <option value="DevOps">DevOps</option>
-        <option value="MERN Developer">MERN Developer</option>
-        <option value="MEAN Developer">MEAN Developer</option>
-        <option value="Java Developer">Java Developer</option>
-        <option value="Back-End Developer">Back-End Developer</option>
-        <option value="Front-End Developer">Front-End Developer</option>
-        <option value="Full-Stack Developer">Full-Stack Developer</option>
+        <option disabled>Select job designation</option>
+        <option <%=job.skillsRequired.includes("HR") ? 'selected' : "";%> value="HR">HR</option>
+        <option <%=job.skillsRequired.includes("SDE") ? 'selected' : "";%> value="SDE">SDE</option>
+        <option <%=job.skillsRequired.includes("DevOps") ? 'selected' : "";%> value="DevOps">DevOps</option>
+        <option <%=job.skillsRequired.includes("MERN Developer") ? 'selected' : "";%> value="MERN Developer">MERN Developer</option>
+        <option <%=job.skillsRequired.includes("MEAN Developer") ? 'selected' : "";%> value="MEAN Developer">MEAN Developer</option>
+        <option <%=job.skillsRequired.includes("Java Developer") ? 'selected' : "";%> value="Java Developer">Java Developer</option>
+        <option <%=job.skillsRequired.includes("Back-End Developer") ? 'selected' : "";%> value="Back-End Developer">Back-End Developer</option>
+        <option <%=job.skillsRequired.includes("Front-End Developer") ? 'selected' : "";%> value="Front-End Developer">Front-End Developer</option>
+        <option <%=job.skillsRequired.includes("Full-Stack Developer") ? 'selected' : "";%> value="Full-Stack Developer">Full-Stack Developer</option>
       </select>
 
       <!-- job location -->
@@ -108,23 +108,23 @@
           aria-label="Default select example"
           required
         >
-          <option disabled selected>Select Required Skills</option>
-          <option value="Data Structures & Algo">Data Structures & Algo</option>
-          <option value="React">React</option>
-          <option value="NodeJs">NodeJs</option>
-          <option value="Angular">Angular</option>
-          <option value="MongoDB">MongoDB</option>
-          <option value="Express">Express</option>
-          <option value="JavaScript">JavaScript</option>
-          <option value="SQL">SQL</option>
-          <option value="Java">Java</option>
-          <option value="SpringBoot">SpringBoot</option>
-          <option value="Python">Python</option>
-          <option value="C">C</option>
-          <option value="C++">C++</option>
-          <option value="C#">C#</option>
-          <option value="Go">Go</option>
-          <option value="Ruby">Ruby</option>
+          <option disabled>Select Required Skills</option>
+          <option <%=job.skillsRequired.includes("Data Structures & Algo") ? 'selected' : "";%> value="Data Structures & Algo">Data Structures & Algo</option>
+          <option <%=job.skillsRequired.includes("React") ? 'selected' : "";%> value="React">React</option>
+          <option <%=job.skillsRequired.includes("NodeJs") ? 'selected' : "";%> value="NodeJs">NodeJs</option>
+          <option <%=job.skillsRequired.includes("Angular") ? 'selected' : "";%> value="Angular">Angular</option>
+          <option <%=job.skillsRequired.includes("MongoDB") ? 'selected' : "";%> value="MongoDB">MongoDB</option>
+          <option <%=job.skillsRequired.includes("Express") ? 'selected' : "";%> value="Express">Express</option>
+          <option <%=job.skillsRequired.includes("JavaScript") ? 'selected' : "";%> value="JavaScript">JavaScript</option>
+          <option <%=job.skillsRequired.includes("SQL") ? 'selected' : "";%> value="SQL">SQL</option>
+          <option <%=job.skillsRequired.includes("Java") ? 'selected' : "";%> value="Java">Java</option>
+          <option <%=job.skillsRequired.includes("SpringBoot") ? 'selected' : "";%> value="SpringBoot">SpringBoot</option>
+          <option <%=job.skillsRequired.includes("Python") ? 'selected' : "";%> value="Python">Python</option>
+          <option <%=job.skillsRequired.includes("C") ? 'selected' : "";%> value="C">C</option>
+          <option <%=job.skillsRequired.includes("C++") ? 'selected' : "";%> value="C++">C++</option>
+          <option <%=job.skillsRequired.includes("C#") ? 'selected' : "";%> value="C#">C#</option>
+          <option <%=job.skillsRequired.includes("Go") ? 'selected' : "";%> value="Go">Go</option>
+          <option <%=job.skillsRequired.includes("Ruby") ? 'selected' : "";%> value="Ruby">Ruby</option>
         </select>
 
         <!-- apply by -->
