@@ -62,11 +62,16 @@
           <img src="/assets/bar-chart-fill.svg" alt="bar chart" />
           <%#<i class="fa-solid fa-signal fs-xs"></i>%> <%=job.numberOfOpenings%>
         </li>
-        <li>
-          <a href="/jobs/applicants/<%=job.id%>" class="text-danger text-decoration-none" role="button" tabindex="0">
-            <img src="/assets/two-people.svg" alt="Users"/>
-            Applicants <%=job.applicants ? job.applicants.length : 0 %>
-          </a>
+        <li class="text-danger">
+          <%if(userEmail){%>
+            <a href="/jobs/applicants/<%=job.id%>" class="text-danger text-decoration-none" role="button" tabindex="0">
+              <img src="/assets/two-people.svg" alt="Users"/>
+              Applicants <%=job.applicants ? job.applicants.length : 0 %>
+            </a>
+            <%}else{%>
+              <img src="/assets/two-people.svg" alt="Users"/>
+              Applicants <%=job.applicants ? job.applicants.length : 0 %>
+            <%}%>
         </li>
       </ul>
     </div>
