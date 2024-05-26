@@ -15,6 +15,7 @@ import { uploadFile } from "./src/middlewares/multer.middleware.js";
 import { lastVisit } from "./src/middlewares/lastVisit.middleware.js";
 import { sendConfirmationMail } from "./src/middlewares/mailer.middleware.js";
 import UserValidations from "./src/middlewares/userValidation.middleware.js";
+import JobsValidations from "./src/middlewares/jobValidation.middleware.js";
 
 const jobController = new JobController();
 const userController = new UserController();
@@ -70,6 +71,7 @@ app.get("/jobs/:id", jobController.getJobDetails);
 app.post(
   "/jobs/:id/applicants/",
   uploadFile.single("resume"),
+  JobsValidations.applyJobValidator,
   sendConfirmationMail,
   jobController.postAddApplicant
 );
