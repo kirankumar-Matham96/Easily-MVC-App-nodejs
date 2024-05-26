@@ -63,7 +63,7 @@
           <%#<i class="fa-solid fa-signal fs-xs"></i>%> <%=job.numberOfOpenings%>
         </li>
         <li>
-          <a class="text-danger text-decoration-none" role="button" tabindex="0">
+          <a href="/jobs/applicants/<%=job.id%>" class="text-danger text-decoration-none" role="button" tabindex="0">
             <img src="/assets/two-people.svg" alt="Users"/>
             Applicants <%=job.applicants ? job.applicants.length : 0 %>
           </a>

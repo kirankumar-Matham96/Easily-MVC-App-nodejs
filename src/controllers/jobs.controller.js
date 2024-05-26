@@ -1,4 +1,5 @@
 import JobsModel from "../models/jobs.model.js";
+import path from "path";
 
 class JobController {
   getHome(req, res) {
@@ -7,13 +8,16 @@ class JobController {
       userEmail: req.session.userEmail,
     });
   }
+
   getJobs(req, res) {
     const jobs = JobsModel.getJobs();
     res.render("jobs", { jobs });
   }
+
   getNewJob(req, res) {
     res.render("post-new-job", { errorMessage: null });
   }
+
   getJobDetails(req, res) {
     const { id } = req.params;
     const jobFound = JobsModel.getJobById(id);
@@ -56,6 +60,12 @@ class JobController {
     res.redirect("/jobs");
   }
 
+  getApplicants(req, res) {
+    const { id } = req.params;
+    const applicants = JobsModel.getApplicantsOfAJob(id);
+    res.render("applicants", { applicants });
+  }
+  
   postAddApplicant(req, res) {
     // this is the job id
     const { id } = req.params;

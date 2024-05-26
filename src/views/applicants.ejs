@@ -1,0 +1,32 @@
+<div class="container">
+  <table class="table table-striped">
+    <thead class="text-dark">
+      <tr>
+        <th class="fs-5 fw-light" scope="col">#</th>
+        <th class="fs-5 fw-light" scope="col">Name</th>
+        <th class="fs-5 fw-light" scope="col">Email</th>
+        <th class="fs-5 fw-light" scope="col">Contact</th>
+        <th class="fs-5 fw-light" scope="col">Resume</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%if(applicants.length > 0){%> <%applicants.forEach((applicant, index) =>
+      {%>
+      <tr>
+        <td scope="row"><%=index+1%></td>
+        <td><%=applicant.name%></td>
+        <td><%=applicant.email%></td>
+        <td><%=applicant.contact%></td>
+        <td>
+          <a
+            href="/files/<%=applicant.resume%>"
+            target="_blank"
+            class="btn btn-primary"
+            >View</a
+          >
+        </td>
+      </tr>
+      <%})%> <%}%>
+    </tbody>
+  </table>
+</div>

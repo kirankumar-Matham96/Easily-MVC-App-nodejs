@@ -13,6 +13,7 @@ export const jobs = [
     skillsRequired: ["REACT", "ANGULAR", "NODE", "EXPRESS", "MONGODB", "MYSQL"],
     numberOfOpenings: 5,
     jobPosted: new Date().toISOString(),
+    // applicants: ["1", "2", "3", "4", "5", "6"],
     applicants: [],
   },
 ];
@@ -107,8 +108,8 @@ class JobsModel {
 
   static getApplicantsOfAJob(id) {
     const jobFound = jobs.find((job) => job.id === id);
-    const applicantsList = jobFound.applicants.map((applicant) => {
-      return ApplicantModel.getApplicantById(applicant.id);
+    const applicantsList = jobFound.applicants.map((applicantId) => {
+      return ApplicantModel.getApplicantById(applicantId);
     });
     return applicantsList;
   }

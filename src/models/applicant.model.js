@@ -16,14 +16,16 @@ class ApplicantModel {
   }
 
   static addApplicant(applicant) {
-    const {name, email, contact, resume} = applicant;
+    const { name, email, contact, resume } = applicant;
     const newApplicant = new ApplicantModel(name, email, contact, resume);
     applicants.push(newApplicant);
     return newApplicant;
   }
 
   static getApplicantById(id) {
-    const foundApplicant = applicants.find((applicant) => applicant.id === id);
+    const foundApplicant = applicants.find((applicant) => {
+      return applicant.id === id;
+    });
     return foundApplicant;
   }
 
