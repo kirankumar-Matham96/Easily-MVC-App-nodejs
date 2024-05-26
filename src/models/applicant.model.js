@@ -8,7 +8,7 @@ class ApplicantModel {
     this.name = name;
     this.email = email;
     this.contact = contact;
-    this.resume = resume;
+    this.resumePath = resume;
   }
 
   static getApplicants() {

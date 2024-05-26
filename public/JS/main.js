@@ -11,9 +11,8 @@ function isLoggedin(userEmail) {
 async function confirmDelete(id) {
   const responseFromUser = confirm("Do you want to delete this post?");
   if (responseFromUser) {
-    const res = await fetch("/job/delete/" + id, { method: "delete" });
+    const res = await fetch("/jobs/delete/" + id, { method: "DELETE" });
     if (res.ok) {
-      // location.redirect("/jobs");
       location.href = "/jobs";
     }
   }

@@ -79,16 +79,20 @@ class JobsModel {
   }
 
   static updateJob(updatedJob, id) {
-    const jobFound = jobs.find((job) => job.id === id);
+    try {
+      const jobFound = jobs.find((job) => job.id === id);
 
-    jobFound.jobCategory = updatedJob.category;
-    jobFound.jobDesignation = updatedJob.destination;
-    jobFound.jobLocation = updatedJob.location;
-    jobFound.companyName = updatedJob.name;
-    jobFound.salary = updatedJob.salary;
-    jobFound.applyBy = updatedJob.lastDate;
-    jobFound.skillsRequired = updatedJob.skills;
-    jobFound.numberOfOpenings = updatedJob.positions;
+      jobFound.jobCategory = updatedJob.category;
+      jobFound.jobDesignation = updatedJob.destination;
+      jobFound.jobLocation = updatedJob.location;
+      jobFound.companyName = updatedJob.name;
+      jobFound.salary = updatedJob.salary;
+      jobFound.applyBy = updatedJob.lastDate;
+      jobFound.skillsRequired = updatedJob.skills;
+      jobFound.numberOfOpenings = updatedJob.positions;
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   static deleteJob(id) {

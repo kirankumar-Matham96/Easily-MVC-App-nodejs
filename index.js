@@ -10,6 +10,7 @@ import UserController from "./src/controllers/user.controller.js";
 // middlewares
 import { auth } from "./src/middlewares/auth.middleware.js";
 import { uploadFile } from "./src/middlewares/multer.middleware.js";
+import { sendConfirmationMail } from "./src/middlewares/mailer.middleware.js";
 
 const jobController = new JobController();
 const userController = new UserController();
@@ -61,15 +62,15 @@ app.get("/jobs/:id", jobController.getJobDetails);
 app.post(
   "/jobs/:id/applicants/",
   uploadFile.single("resume"),
+  sendConfirmationMail,
   jobController.postAddApplicant
 );
 // update job
-app.get("/job/update/:id", auth, jobController.getUpdateJob);
-app.post("/job/update/:id", auth, jobController.putUpdateJob);
+app.get("/jobs/update/:id", auth, jobController.getUpdateJob);
+app.post("/jobs/update/:id", auth, jobController.putUpdateJob);
 
 // delete job
-// app.get("/job/delete/:id", auth, jobController.getDeleteJob);
-app.delete("/job/delete/:id", auth, jobController.getDeleteJob);
+app.delete("/jobs/delete/:id", auth, jobController.getDeleteJob);
 
 /* applicants routes */
 app.get("/jobs/applicants/:id", auth, jobController.getApplicants);

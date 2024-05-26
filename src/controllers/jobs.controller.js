@@ -41,14 +41,13 @@ class JobController {
     }
     const { id } = req.params;
     JobsModel.updateJob(req.body, id);
-    res.redirect("/jobs");
+    return res.status(200).redirect("/jobs");
   }
 
   getDeleteJob(req, res) {
     const { id } = req.params;
     JobsModel.deleteJob(id);
-    // res.redirect("/jobs");
-    res.status(200).send({ message: "Post deleted successfully!" });
+    return res.status(200).send({ message: "Post deleted successfully!" });
   }
 
   postNewJob(req, res) {

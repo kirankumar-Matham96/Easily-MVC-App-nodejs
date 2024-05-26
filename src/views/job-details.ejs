@@ -23,19 +23,20 @@
           </span>
         </span>
         <%if(userEmail){%>
-          <a href="/job/update/<%=job.id%>">
+          <a href="/jobs/update/<%=job.id%>">
             <button 
               class="border-0 bg-transparent p-0 m-0 me-1"
               style="width: 38px; height: 38px"
               title="Edit Job Details"
-              >
+            >
               <img src="/assets/edit-icon.svg" alt="edit"  style="width: 100%"/>
             </button>
           </a>
-          <a href="/job/delete/<%=job.id%>" class="text-danger">
-          Added onclick event to the button  
-          </a>
-            <button class="btn btn-link-danger text-danger fs-2"  onclick="confirmDelete('<%=job.id%>')" title="Delete Job">
+            <button
+              class="btn btn-link-danger text-danger fs-2"
+              onclick="confirmDelete('<%=job.id%>')"
+              title="Delete Job"
+            >
               <i class="fa-solid fa-file-excel"></i>
             </butt>
         <%}%>
