@@ -42,6 +42,12 @@ class UserController {
         "only recruiter is allowed to access this page, login as recruiter to continue",
     });
   }
+
+  getUnknown(req, res) {
+    res.render("error", {
+      errorMessage: "404 Page not found!",
+    });
+  }
 }
 
 export default UserController;

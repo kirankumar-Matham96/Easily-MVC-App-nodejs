@@ -2,7 +2,10 @@ import JobsModel from "../models/jobs.model.js";
 
 class JobController {
   getHome(req, res) {
-    res.render("home", { errorMessage: null });
+    res.render("home", {
+      errorMessage: null,
+      userEmail: req.session.userEmail,
+    });
   }
   getJobs(req, res) {
     const jobs = JobsModel.getJobs();
@@ -59,7 +62,6 @@ class JobController {
 
     // getting resume file path
     const resume = req.file.filename;
-    console.log({ resume });
 
     // adding resume file path to the request object
     req.body.resume = resume;

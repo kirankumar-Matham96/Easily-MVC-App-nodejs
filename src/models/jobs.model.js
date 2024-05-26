@@ -47,7 +47,6 @@ class JobsModel {
   }
 
   static getJobById(id) {
-    console.log(id);
     const foundJob = jobs.find((job) => job.id === id);
     return foundJob;
   }

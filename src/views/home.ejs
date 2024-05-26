@@ -6,14 +6,17 @@
     <h2 class="ps-2 text-white h-white">job opportunities and internships</h2>
     <h5 class="ps-2 text-white my-3 h-white">Get Discovered. Get Hired</h5>
     <div class="d-flex my-3">
-      <button type="button" class="btn btn-lg mx-2 login-btn">
-        I'm A Job Seeker
-      </button>
+      <a href="/jobs">
+        <button type="button" class="btn btn-lg mx-2 login-btn">
+          I'm A Job Seeker
+        </button>
+      </a>
       <button
         type="button"
         class="btn btn-lg mx-2 login-btn"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
+        onclick="isLoggedin('<%=locals.userEmail%>')"
       >
         I'm A Recruiter
       </button>

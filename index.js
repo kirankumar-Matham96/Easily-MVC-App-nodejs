@@ -79,6 +79,8 @@ app.get("/logout", userController.getLogout);
 /* 404 error route */
 app.get("/404", userController.get404);
 
+app.get("*", userController.getUnknown);
+
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
