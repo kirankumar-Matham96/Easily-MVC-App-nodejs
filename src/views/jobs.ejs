@@ -1,9 +1,9 @@
 <div class="mt-4">
   <%if(userEmail && locals.lastVisit){%>
   <div
-    class="container-fluid bg-black text-success position-absolute bottom-0 start-0"
+    class="container-fluid bg-black text-success position-fixed bottom-0 start-0"
   >
-    Your last visit was on: <%= locals.lastVisit %>
+    Your last visit was on: <%= locals.lastVisitFormatted %>
   </div>
   <%}%>
   <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 g-5">
