@@ -1,6 +1,26 @@
+/*********************************************************************
+ * Execution    : 1. Default node with npm   cmd> npm start
+ *                2. If nodemon installed    cmd> npm run dev
+ *
+ * Purpose      : Controls the operations(requests and responses)
+ *
+ * @description
+ *
+ * @file        : controllers/jobs.controller.js
+ * @overview    : controller module to control the requests
+ * @module      : this is necessary to run the job search app
+ * @author      : Kirankumar Matham <mathamkirankumar96@gmail.com>
+ * @version     : 1.0.0
+ * @since       : 27-05-2024
+ *********************************************************************/
+
+// imports
 import JobsModel from "../models/jobs.model.js";
 
 class JobController {
+  /**
+   * To get the home page (base page).
+   */
   getHome = (req, res) => {
     res.render("home", {
       errorMessage: null,
@@ -8,6 +28,9 @@ class JobController {
     });
   };
 
+  /**
+   * To get the jobs list page.
+   */
   getJobs = (req, res) => {
     const jobs = JobsModel.getJobs();
     const page = parseInt(req.query.page) || 1;
@@ -24,6 +47,9 @@ class JobController {
     });
   };
 
+  /**
+   * To get the form to create a new job (for recruiters).
+   */
   getNewJob = (req, res) => {
     res.render("post-new-job", {
       errorMessage: null,
@@ -31,6 +57,9 @@ class JobController {
     });
   };
 
+  /**
+   * To get the details of a specific job.
+   */
   getJobDetails = (req, res) => {
     const { id } = req.params;
     const jobFound = JobsModel.getJobById(id);
@@ -41,6 +70,9 @@ class JobController {
     });
   };
 
+  /**
+   * To get the job updating form (for recruiters). 
+   */
   getUpdateJob = (req, res) => {
     const { id } = req.params;
     req.body.recruiterEmail = req.session.userEmail;
@@ -57,6 +89,10 @@ class JobController {
     });
   };
 
+  /**
+   * To update a specific job.
+   * @returns jobs list page
+   */
   putUpdateJob = (req, res) => {
     // adjusting for the single skill
     if (typeof req.body.skills === "string") {
@@ -73,6 +109,10 @@ class JobController {
     });
   };
 
+  /**
+   * To delete a specific job (for recruiters).
+   * @returns success or failure message
+   */
   postDeleteJob = (req, res) => {
     const { id } = req.params;
     const isDeleted = JobsModel.deleteJob(id, req.session.userEmail);
@@ -84,6 +124,9 @@ class JobController {
       .send({ message: "You don't have the access to delete this post" });
   };
 
+  /**
+   * To create a new job (for recruiters).
+   */
   postNewJob = (req, res) => {
     // adjusting for the single skill
     if (typeof req.body.skills === "string") {
@@ -96,6 +139,9 @@ class JobController {
     res.redirect("/jobs");
   };
 
+  /**
+   * To get the applicants list page. 
+   */
   getApplicants = (req, res) => {
     const { id } = req.params;
     const applicants = JobsModel.getApplicantsOfAJob(id);
@@ -119,6 +165,10 @@ class JobController {
     });
   };
 
+  /**
+   * To apply for a job (for job seekers).
+   * Adds the applicant to a specific job.
+   */
   postAddApplicant = (req, res) => {
     // this is the job id
     const { id } = req.params;
@@ -133,6 +183,9 @@ class JobController {
     res.redirect("/jobs");
   };
 
+  /**
+   * To get the job post by search (with company title only)
+   */
   getSearch = (req, res) => {
     const query = req.query.query;
     const jobsFound = JobsModel.getJobsBySearch(query);

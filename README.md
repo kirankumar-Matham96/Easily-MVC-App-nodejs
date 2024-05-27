@@ -38,18 +38,10 @@ A Node.js application to search, apply for jobs, and create and post new jobs fo
    ```
 
 2. Install the dependencies:
+
    ```bash
    npm install
    ```
-
-[comment]: <> (This is a comment, it will not be included)
-[comment]: <> 3. Set up environment variables:
-[comment]: <> - Create a `.env` file in the root directory and add the following:
-[comment]: <> `env
-[comment]: <>        PORT=3000
-[comment]: <>        DATABASE_URL=mongodb://localhost:27017/job-portal
-[comment]: <>        SESSION_SECRET=your_secret_key
-[comment]: <>        `
 
 3. Start the application:
 
@@ -67,6 +59,7 @@ A Node.js application to search, apply for jobs, and create and post new jobs fo
 
 ## Project Structure
 
+```
 job-portal-app/
 ├── src/
 │ ├── controllers/
@@ -108,7 +101,8 @@ job-portal-app/
 │ └── main.js
 ├── .gitignore
 ├── package.json
-└── README.md
+└── README.md`
+```
 
 ## API Endpoints
 
@@ -158,4 +152,6 @@ Contributions are welcome! Please follow these steps:
 
 ## License
 
-This project is licensed under the ISC License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the ISC License.
+
+[Comment]< the [LICENSE](LICENSE) file for details.>

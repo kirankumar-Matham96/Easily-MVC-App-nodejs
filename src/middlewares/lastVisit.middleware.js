@@ -1,5 +1,25 @@
-import cookieParser from "cookie-parser";
+/** ******************************************************************
+ * Execution    : 1. Default node with npm   cmd> npm start
+ *                2. If nodemon installed    cmd> npm run dev
+ *
+ * Purpose      : Tracking user last visit
+ *
+ * @description
+ *
+ * @file        : middlewares/lastVisit.middleware.js
+ * @overview    : Tracks user visit and adds cookie
+ * @module      : this is necessary to track the user visits
+ * @author      : Kirankumar Matham <mathamkirankumar96@gmail.com>
+ * @version     : 1.0.0
+ * @since       : 27-05-2024
+ ******************************************************************** */
 
+
+/**
+ * To format date & time.
+ * @param {date string} inputDate 
+ * @returns formatted date & time string.
+ */
 const formatDate = (inputDate = "") => {
   let date;
   if (inputDate) {
@@ -20,6 +40,9 @@ const formatDate = (inputDate = "") => {
   return formattedDateTimeString;
 };
 
+/**
+ * To track last visited time & date of a user. 
+ */
 export const lastVisit = (req, res, next) => {
   if (req.cookies.lastVisit) {
     const date = new Date(req.cookies.lastVisit).toISOString();

@@ -1,6 +1,27 @@
+/** ******************************************************************
+ * Execution    : 1. Default node with npm   cmd> npm start
+ *                2. If nodemon installed    cmd> npm run dev
+ *
+ * Purpose      : User input data validation
+ *
+ * @description
+ *
+ * @file        : middlewares/jobValidation.middleware.js
+ * @overview    : validates user input data
+ * @module      : this is necessary to validate user input data
+ * @author      : Kirankumar Matham <mathamkirankumar96@gmail.com>
+ * @version     : 1.0.0
+ * @since       : 27-05-2024
+ ******************************************************************** */
+
+// imports
 import { body, validationResult } from "express-validator";
 
 class JobsValidations {
+  /**
+   * To validate the job creating form. 
+   * @returns error message on error.
+   */
   static newJobValidator = async (req, res, next) => {
     try {
       await body("category")
@@ -44,6 +65,10 @@ class JobsValidations {
     }
   };
 
+  /**
+   * To validate job updating form. 
+   * @returns error message on error.
+   */
   static updateJobValidator = async (req, res, next) => {
     try {
       await body("category")
@@ -87,6 +112,10 @@ class JobsValidations {
     }
   };
 
+  /**
+   * To validate the job applying form. 
+   * @returns error message on error
+   */
   static applyJobValidator = async (req, res, next) => {
     try {
       await body("name").notEmpty().withMessage("Name is required").run(req);

@@ -1,5 +1,25 @@
+/** ******************************************************************
+ * Execution    : 1. Default node with npm   cmd> npm start
+ *                2. If nodemon installed    cmd> npm run dev
+ *
+ * Purpose      : To send confirmation email
+ *
+ * @description
+ *
+ * @file        : middlewares/mailer.middleware.js
+ * @overview    : Sends a confirmation email to the job applicant
+ * @module      : this is necessary to send the confirmation email
+ * @author      : Kirankumar Matham <mathamkirankumar96@gmail.com>
+ * @version     : 1.0.0
+ * @since       : 27-05-2024
+ ******************************************************************** */
+
+// imports
 import nodemailer from "nodemailer";
 
+/**
+ * To send a confirmation email on successful job application.
+ */
 export const sendConfirmationMail = async (req, res, next) => {
   const { name, email } = req.body;
   const transporter = nodemailer.createTransport({

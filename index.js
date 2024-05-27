@@ -1,3 +1,19 @@
+/** ******************************************************************
+ * Execution    : 1. Default node with npm   cmd> npm start
+ *                2. If nodemon installed    cmd> npm run dev
+ *
+ * Purpose      : To configure express server and routes
+ *
+ * @description
+ *
+ * @file        : index.js
+ * @overview    : Provides configuration for the express and other dependencies and routes
+ * @module      : this is necessary to use HTTP methods
+ * @author      : Kirankumar Matham <mathamkirankumar96@gmail.com>
+ * @version     : 1.0.0
+ * @since       : 27-05-2024
+ ******************************************************************** */
+
 /* dependencies */
 import express from "express";
 import session from "express-session";
@@ -39,7 +55,8 @@ app.use(lastVisit);
 
 // setting up sessions
 const sessionConfig = {
-  secret: "My Secret",
+  secret:
+    "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c",
   resave: false,
   saveUninitialized: true,
   cookie: { secure: false },
@@ -62,13 +79,18 @@ app.use(ejsLayouts);
 app.get("/", jobController.getHome);
 
 /* job related routes */
-app.get("/search", jobController.getSearch);
 app.get("/jobs", jobController.getJobs);
+app.get("/jobs/:id", jobController.getJobDetails); // job details route
+app.get("/search", jobController.getSearch);
+
+/* job management routes */
 app.get("/postjob", auth, jobController.getNewJob);
 app.post("/postjob", auth, jobController.postNewJob);
-// job details route
-app.get("/jobs/:id", jobController.getJobDetails);
-// apply for a job
+app.get("/jobs/update/:id", auth, jobController.getUpdateJob);
+app.post("/jobs/update/:id", auth, jobController.putUpdateJob);
+app.delete("/jobs/delete/:id", auth, jobController.postDeleteJob);
+
+/* applicant routes */
 app.post(
   "/jobs/:id/applicants/",
   uploadFile.single("resume"),
@@ -76,24 +98,16 @@ app.post(
   sendConfirmationMail,
   jobController.postAddApplicant
 );
-// update job
-app.get("/jobs/update/:id", auth, jobController.getUpdateJob);
-app.post("/jobs/update/:id", auth, jobController.putUpdateJob);
-
-// delete job
-app.delete("/jobs/delete/:id", auth, jobController.postDeleteJob);
-
-/* applicants routes */
 app.get("/jobs/applicants/:id", auth, jobController.getApplicants);
 
 /* login & registration routes */
+app.get("/login", userController.getLogin);
+app.post("/login", UserValidations.validateLogin, userController.postLogin);
 app.post(
   "/register",
   UserValidations.validateRegister,
   userController.postRegister
 );
-app.get("/login", userController.getLogin);
-app.post("/login", UserValidations.validateLogin, userController.postLogin);
 app.get("/logout", userController.getLogout);
 
 /* error routes */

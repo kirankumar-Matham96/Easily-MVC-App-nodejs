@@ -1,6 +1,24 @@
+/** ******************************************************************
+ * Execution    : 1. Default node with npm   cmd> npm start
+ *                2. If nodemon installed    cmd> npm run dev
+ *
+ * Purpose      : Have the structure for jobs model
+ *
+ * @description
+ *
+ * @file        : models/jobs.model.js
+ * @overview    : Provides structure for jobs model and performs CRUD operations
+ * @module      : this is necessary to perform jobs CRUD operations
+ * @author      : Kirankumar Matham <mathamkirankumar96@gmail.com>
+ * @version     : 1.0.0
+ * @since       : 27-05-2024
+ ******************************************************************** */
+
+// imports
 import { v4 as uuidv4 } from "uuid";
 import ApplicantModel from "./applicant.model.js";
 
+// List to store the jobs
 export const jobs = [
   {
     id: "371dca82-574c-4f84-866b-9b4681c52196",
@@ -492,15 +510,29 @@ class JobsModel {
     this.applicants = applicants;
   }
 
+  /**
+   * To get all the jobs.
+   * @returns list of jobs.
+   */
   static getJobs = () => {
     return jobs;
   };
 
+  /**
+   * To get the job by id.
+   * @param {job id} id 
+   * @returns job object.
+   */
   static getJobById = (id) => {
     const foundJob = jobs.find((job) => job.id === id);
     return foundJob;
   };
 
+  /**
+   * To get the jobs by searched job title.
+   * @param {search query} query 
+   * @returns job object.
+   */
   static getJobsBySearch = (query) => {
     const jobsFound = jobs.filter((job) => {
       if (job.companyName.toLowerCase().includes(query.toLowerCase())) {
@@ -510,6 +542,10 @@ class JobsModel {
     return jobsFound;
   };
 
+  /**
+   * To create a new job.
+   * @param {new job object} jobDetails 
+   */
   static createJob = (jobDetails) => {
     const {
       recruiterEmail,
@@ -538,6 +574,12 @@ class JobsModel {
     jobs.push(newJob);
   };
 
+  /**
+   * To update the job.
+   * @param {job object from the client} updatedJob 
+   * @param {job id} id 
+   * @returns 
+   */
   static updateJob = (updatedJob, id) => {
     try {
       const jobFound = jobs.find((job) => job.id === id);
@@ -559,6 +601,12 @@ class JobsModel {
     }
   };
 
+  /**
+   * To delete the job.
+   * @param {job id} id 
+   * @param {logged in user email} recruiterEmail 
+   * @returns boolean.
+   */
   static deleteJob = (id, recruiterEmail) => {
     const jobIndex = jobs.findIndex((job) => job.id === id);
     if (recruiterEmail === jobs[jobIndex].recruiterEmail) {
@@ -568,6 +616,11 @@ class JobsModel {
     return false;
   };
 
+  /**
+   * To add new applicant to the job.
+   * @param {applicant object} applicant 
+   * @param {job id} jobId 
+   */
   static addApplicant = (applicant, jobId) => {
     const newApplicant = ApplicantModel.addApplicant(applicant);
 
@@ -578,6 +631,11 @@ class JobsModel {
     jobFound.applicants.push(newApplicant.id);
   };
 
+  /**
+   * To get the applicants of a specific job.
+   * @param {job id} id 
+   * @returns applicants list.
+   */
   static getApplicantsOfAJob = (id) => {
     const jobFound = jobs.find((job) => job.id === id);
     const applicantsList = jobFound.applicants.map((applicantId) => {
