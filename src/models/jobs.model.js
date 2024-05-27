@@ -3968,6 +3968,7 @@ export const jobs = [
 
 class JobsModel {
   constructor(
+    recruiterEmail,
     jobCategory,
     jobDesignation,
     jobLocation,
@@ -3979,6 +3980,7 @@ class JobsModel {
     applicants = []
   ) {
     this.id = uuidv4();
+    this.recruiterEmail = recruiterEmail;
     this.jobCategory = jobCategory;
     this.jobDesignation = jobDesignation;
     this.jobLocation = jobLocation;
@@ -4002,9 +4004,7 @@ class JobsModel {
 
   static getJobsBySearch(query) {
     const jobsFound = jobs.filter((job) => {
-      console.log(job);
       if (job.companyName.toLowerCase().includes(query.toLowerCase())) {
-        console.log(job);
         return job;
       }
     });
@@ -4013,6 +4013,7 @@ class JobsModel {
 
   static createJob(jobDetails) {
     const {
+      recruiterEmail,
       category,
       destination,
       location,
@@ -4024,6 +4025,7 @@ class JobsModel {
     } = jobDetails;
 
     const newJob = new JobsModel(
+      recruiterEmail,
       category,
       destination,
       location,
@@ -4041,22 +4043,30 @@ class JobsModel {
     try {
       const jobFound = jobs.find((job) => job.id === id);
 
-      jobFound.jobCategory = updatedJob.category;
-      jobFound.jobDesignation = updatedJob.destination;
-      jobFound.jobLocation = updatedJob.location;
-      jobFound.companyName = updatedJob.name;
-      jobFound.salary = updatedJob.salary;
-      jobFound.applyBy = updatedJob.lastDate;
-      jobFound.skillsRequired = updatedJob.skills;
-      jobFound.numberOfOpenings = updatedJob.positions;
+      if (jobFound.recruiterEmail === updatedJob.recruiterEmail) {
+        jobFound.jobCategory = updatedJob.category;
+        jobFound.jobDesignation = updatedJob.destination;
+        jobFound.jobLocation = updatedJob.location;
+        jobFound.companyName = updatedJob.name;
+        jobFound.salary = updatedJob.salary;
+        jobFound.applyBy = updatedJob.lastDate;
+        jobFound.skillsRequired = updatedJob.skills;
+        jobFound.numberOfOpenings = updatedJob.positions;
+        return true;
+      }
+      return false;
     } catch (error) {
       console.log(error);
     }
   }
 
-  static deleteJob(id) {
+  static deleteJob(id, recruiterEmail) {
     const jobIndex = jobs.findIndex((job) => job.id === id);
-    jobs.splice(jobIndex, 1);
+    if (recruiterEmail === jobs[jobIndex].recruiterEmail) {
+      jobs.splice(jobIndex, 1);
+      return true;
+    }
+    return false;
   }
 
   static addApplicant(applicant, jobId) {

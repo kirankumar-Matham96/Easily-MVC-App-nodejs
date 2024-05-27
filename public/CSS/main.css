@@ -96,3 +96,8 @@ body {
 .edit-icon > img {
   width: 100%;
 }
+
+/* applicants list styles */
+.applicants-container {
+  min-height: 80vh;
+}

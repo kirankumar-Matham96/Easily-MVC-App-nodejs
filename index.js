@@ -96,9 +96,8 @@ app.get("/login", userController.getLogin);
 app.post("/login", UserValidations.validateLogin, userController.postLogin);
 app.get("/logout", userController.getLogout);
 
-/* 404 error route */
-app.get("/404", userController.get404);
-
+/* error routes */
+app.get("/error-deletion", userController.getError);
 app.get("*", userController.getUnknown);
 
 app.listen(PORT, () => {

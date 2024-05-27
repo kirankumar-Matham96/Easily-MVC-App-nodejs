@@ -4,7 +4,7 @@
     <% if(errorMessage){ %>
     <div class="alert alert-danger" role="alert"><%= errorMessage %></div>
     <%}%>
-    <form action="/job/update/<%=job.id%>" method="POST">
+    <form action="/jobs/update/<%=job.id%>" method="POST">
       <!-- job category dropdown -->
       <select
         class="form-select mb-3"

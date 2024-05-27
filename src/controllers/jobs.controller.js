@@ -44,11 +44,17 @@ class JobController {
 
   getUpdateJob(req, res) {
     const { id } = req.params;
-    const jobFound = JobsModel.getJobById(id);
-    res.render("update-job", {
-      job: jobFound,
-      errorMessage: null,
-      userEmail: req.session.userEmail,
+    req.body.recruiterEmail = req.session.userEmail;
+    const jobFound = JobsModel.getJobById(req.body, id);
+    if (jobFound) {
+      return res.render("update-job", {
+        job: jobFound,
+        errorMessage: null,
+        userEmail: req.session.userEmail,
+      });
+    }
+    return res.render("error", {
+      errorMessage: "You don't have the access to update this post",
     });
   }
 
@@ -57,15 +63,24 @@ class JobController {
     if (typeof req.body.skills === "string") {
       req.body.skills = [req.body.skills];
     }
+    req.body.recruiterEmail = req.session.userEmail;
     const { id } = req.params;
-    JobsModel.updateJob(req.body, id);
-    return res.status(200).redirect("/jobs");
+    const isUpdated = JobsModel.updateJob(req.body, id);
+    if (isUpdated) {
+      return res.status(200).redirect("/jobs");
+    }
+    return res.render("error", {
+      errorMessage: "You don't have the access to update this post",
+    });
   }
 
   postDeleteJob(req, res) {
     const { id } = req.params;
-    JobsModel.deleteJob(id);
-    return res.status(200).send({ message: "Post deleted successfully!" });
+    const isDeleted = JobsModel.deleteJob(id, req.session.userEmail);
+    if (isDeleted) {
+      return res.status(200).send({ message: "Post deleted successfully!" });
+    }
+    return res.status(403).send({message: "You don't have the access to delete this post"});
   }
 
   postNewJob(req, res) {
@@ -73,7 +88,9 @@ class JobController {
     if (typeof req.body.skills === "string") {
       req.body.skills = [req.body.skills];
     }
-
+    console.log("Locals => ", req.locals);
+    console.log("Locals => ", req.session.userEmail);
+    req.body.recruiterEmail = req.session.userEmail;
     JobsModel.createJob(req.body);
     res.redirect("/jobs");
   }
@@ -88,11 +105,12 @@ class JobController {
 
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 10;
-    const totalPages = Math.ceil(jobs.length / limit);
+    const totalPages = Math.ceil(applicants.length / limit);
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
-    const paginatedApplicants = jobs.slice(startIndex, endIndex);
-    res.render("jobs", {
+    const paginatedApplicants = applicants.slice(startIndex, endIndex);
+    res.render("applicants", {
+      jobId: id,
       applicants: paginatedApplicants,
       currentPage: page,
       totalPages: totalPages,
@@ -115,13 +133,8 @@ class JobController {
   }
 
   getSearch(req, res) {
-    console.log(req.body);
     const query = req.query.query;
-    console.log({ query });
     const jobsFound = JobsModel.getJobsBySearch(query);
-    console.log(jobsFound);
-    // res.redirect("/jobs");
-
     const page = parseInt(req.query.page) || 1;
     const limit = parseInt(req.query.limit) || 12;
     const totalPages = Math.ceil(jobsFound.length / limit);

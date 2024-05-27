@@ -11,10 +11,7 @@ class UserController {
     if (userFound) {
       if (userFound.password === req.body.password) {
         req.session.userEmail = userFound.email;
-        return res.render("jobs", {
-          jobs,
-          userEmail: req.session.userEmail,
-        });
+        return res.redirect("/jobs");
       } else {
         return res.render("login", { errorMessage: "Invalid credentials!" });
       }
@@ -38,16 +35,15 @@ class UserController {
     res.render("login", { errorMessage: null });
   }
 
-  get404(req, res) {
-    res.render("error", {
-      errorMessage:
-        "only recruiter is allowed to access this page, login as recruiter to continue",
-    });
-  }
-
   getUnknown(req, res) {
     res.render("error", {
       errorMessage: "404 Page not found!",
+    });
+  }
+
+  getError(req, res) {
+    res.render("error", {
+      errorMessage: "You don't have the access to delete this post",
     });
   }
 }

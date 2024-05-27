@@ -1,7 +1,6 @@
 import nodemailer from "nodemailer";
 
 export const sendConfirmationMail = async (req, res, next) => {
-  console.log("In mailer middleware => ", req.body);
   const { name, email } = req.body;
   const transporter = nodemailer.createTransport({
     service: "gmail",
