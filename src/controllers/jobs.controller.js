@@ -11,8 +11,16 @@ class JobController {
 
   getJobs(req, res) {
     const jobs = JobsModel.getJobs();
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const totalPages = Math.ceil(jobs.length / limit);
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    const paginatedJobs = jobs.slice(startIndex, endIndex);
     res.render("jobs", {
-      jobs,
+      jobs: paginatedJobs,
+      currentPage: page,
+      totalPages: totalPages,
       userEmail: req.session.userEmail,
     });
   }
