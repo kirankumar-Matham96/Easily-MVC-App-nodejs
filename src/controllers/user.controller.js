@@ -1,12 +1,12 @@
 import UserModel from "../models/user.model.js";
 import { jobs } from "../models/jobs.model.js";
 class UserController {
-  postRegister(req, res) {
+  postRegister = (req, res) => {
     UserModel.registerUser(req.body);
     res.redirect("/login");
   }
 
-  postLogin(req, res) {
+  postLogin = (req, res) => {
     const userFound = UserModel.login(req.body);
     if (userFound) {
       if (userFound.password === req.body.password) {
@@ -19,7 +19,7 @@ class UserController {
     res.render("error", { errorMessage: "User not found pls register" });
   }
 
-  getLogout(req, res) {
+  getLogout = (req, res) => {
     req.session.destroy((err) => {
       if (err) {
         console.log(err);
@@ -31,17 +31,17 @@ class UserController {
     res.clearCookie("lastVisit");
   }
 
-  getLogin(req, res) {
+  getLogin = (req, res) => {
     res.render("login", { errorMessage: null });
   }
 
-  getUnknown(req, res) {
+  getUnknown = (req, res) => {
     res.render("error", {
       errorMessage: "404 Page not found!",
     });
   }
 
-  getError(req, res) {
+  getError = (req, res) => {
     res.render("error", {
       errorMessage: "You don't have the access to delete this post",
     });

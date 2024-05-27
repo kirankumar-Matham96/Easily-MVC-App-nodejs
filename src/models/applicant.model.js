@@ -11,25 +11,25 @@ class ApplicantModel {
     this.resumePath = resume;
   }
 
-  static getApplicants() {
+  static getApplicants = () => {
     return applicants;
-  }
+  };
 
-  static addApplicant(applicant) {
+  static addApplicant = (applicant) => {
     const { name, email, contact, resume } = applicant;
     const newApplicant = new ApplicantModel(name, email, contact, resume);
     applicants.push(newApplicant);
     return newApplicant;
-  }
+  };
 
-  static getApplicantById(id) {
+  static getApplicantById = (id) => {
     const foundApplicant = applicants.find((applicant) => {
       return applicant.id === id;
     });
     return foundApplicant;
-  }
+  };
 
-  static updateApplicant(applicant) {
+  static updateApplicant = (applicant) => {
     const { id, name, email, contact, resume } = applicant;
 
     const applicantFound = applicants.find((applicant) => applicant.id === id);
@@ -37,14 +37,14 @@ class ApplicantModel {
     applicantFound.email = email;
     applicantFound.contact = contact;
     applicantFound.resume = resume;
-  }
+  };
 
-  static removeApplicant(id) {
+  static removeApplicant = (id) => {
     const applicantIndex = applicants.findIndex(
       (applicant) => applicant.id === id
     );
     applicants.splice(applicantIndex, 1);
-  }
+  };
 }
 
 export default ApplicantModel;

@@ -10,21 +10,21 @@ class UserModel {
     this.password = password;
   }
 
-  static getUsers(){
+  static getUsers = () => {
     return registeredUsers;
-  }
+  };
 
-  static registerUser(user) {
+  static registerUser = (user) => {
     const { name, email, password } = user;
     const newUser = new UserModel(name, email, password);
     registeredUsers.push(newUser);
-  }
+  };
 
-  static login(user) {
+  static login = (user) => {
     const { email, password } = user;
     const userFound = registeredUsers.find((user) => user.email === email);
     return userFound;
-  }
+  };
 }
 
 export default UserModel;
