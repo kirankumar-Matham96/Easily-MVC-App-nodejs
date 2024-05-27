@@ -62,6 +62,7 @@ app.use(ejsLayouts);
 app.get("/", jobController.getHome);
 
 /* job related routes */
+app.get("/search", jobController.getSearch);
 app.get("/jobs", jobController.getJobs);
 app.get("/postjob", auth, jobController.getNewJob);
 app.post("/postjob", auth, jobController.postNewJob);

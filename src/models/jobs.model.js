@@ -4000,6 +4000,17 @@ class JobsModel {
     return foundJob;
   }
 
+  static getJobsBySearch(query) {
+    const jobsFound = jobs.filter((job) => {
+      console.log(job);
+      if (job.companyName.toLowerCase().includes(query.toLowerCase())) {
+        console.log(job);
+        return job;
+      }
+    });
+    return jobsFound;
+  }
+
   static createJob(jobDetails) {
     const {
       category,

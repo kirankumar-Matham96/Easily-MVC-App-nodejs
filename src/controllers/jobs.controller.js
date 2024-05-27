@@ -12,7 +12,7 @@ class JobController {
   getJobs(req, res) {
     const jobs = JobsModel.getJobs();
     const page = parseInt(req.query.page) || 1;
-    const limit = parseInt(req.query.limit) || 10;
+    const limit = parseInt(req.query.limit) || 12;
     const totalPages = Math.ceil(jobs.length / limit);
     const startIndex = (page - 1) * limit;
     const endIndex = page * limit;
@@ -81,8 +81,21 @@ class JobController {
   getApplicants(req, res) {
     const { id } = req.params;
     const applicants = JobsModel.getApplicantsOfAJob(id);
-    res.render("applicants", {
-      applicants,
+    // res.render("applicants", {
+    //   applicants,
+    //   userEmail: req.session.userEmail,
+    // });
+
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 10;
+    const totalPages = Math.ceil(jobs.length / limit);
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    const paginatedApplicants = jobs.slice(startIndex, endIndex);
+    res.render("jobs", {
+      applicants: paginatedApplicants,
+      currentPage: page,
+      totalPages: totalPages,
       userEmail: req.session.userEmail,
     });
   }
@@ -99,6 +112,28 @@ class JobController {
 
     JobsModel.addApplicant(req.body, id);
     res.redirect("/jobs");
+  }
+
+  getSearch(req, res) {
+    console.log(req.body);
+    const query = req.query.query;
+    console.log({ query });
+    const jobsFound = JobsModel.getJobsBySearch(query);
+    console.log(jobsFound);
+    // res.redirect("/jobs");
+
+    const page = parseInt(req.query.page) || 1;
+    const limit = parseInt(req.query.limit) || 12;
+    const totalPages = Math.ceil(jobsFound.length / limit);
+    const startIndex = (page - 1) * limit;
+    const endIndex = page * limit;
+    const paginatedJobs = jobsFound.slice(startIndex, endIndex);
+    res.render("jobs", {
+      jobs: paginatedJobs,
+      currentPage: page,
+      totalPages: totalPages,
+      userEmail: req.session.userEmail,
+    });
   }
 }
 
